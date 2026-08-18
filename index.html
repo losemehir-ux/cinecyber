@@ -454,6 +454,32 @@
                 modal.style.display = 'none';
             }
         }
+        // Theme Switcher Function
+function toggleTheme() {
+  const body = document.body;
+  const btn = document.getElementById('themeToggleBtn');
+  
+  body.classList.toggle('light-theme');
+  
+  if (body.classList.contains('light-theme')) {
+    localStorage.setItem('userTheme', 'light');
+    if (btn) btn.innerHTML = '🌙 Dark Mode';
+  } else {
+    localStorage.setItem('userTheme', 'dark');
+    if (btn) btn.innerHTML = '☀️ Light Mode';
+  }
+}
+
+// Check Saved Theme on Page Load
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('userTheme');
+  const btn = document.getElementById('themeToggleBtn');
+  
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+    if (btn) btn.innerHTML = '🌙 Dark Mode';
+  }
+});
     </script>
 </body>
 </html>
