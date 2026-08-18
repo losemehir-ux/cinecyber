@@ -491,25 +491,31 @@ function toggleTheme() {
   const body = document.body;
   const btn = document.getElementById('themeToggleBtn');
   
-  body.classList.toggle('light-theme');
-  
-  if (body.classList.contains('light-theme')) {
-    localStorage.setItem('userTheme', 'light');
+  // Check current background color
+  if (body.style.backgroundColor === 'rgb(248, 250, 252)') {
+    // Switch to Dark
+    body.style.backgroundColor = '#0b0b0b';
+    body.style.color = '#f1f1f1';
+    localStorage.setItem('userTheme', 'dark');
     if (btn) btn.innerHTML = '🌙 Dark Mode';
   } else {
-    localStorage.setItem('userTheme', 'dark');
+    // Switch to Light White
+    body.style.backgroundColor = '#f8fafc';
+    body.style.color = '#0f172a';
+    localStorage.setItem('userTheme', 'light');
     if (btn) btn.innerHTML = '☀️ Light Mode';
   }
 }
 
-// Check Saved Theme on Page Load
+// Page load par check karne ke liye
 window.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('userTheme');
   const btn = document.getElementById('themeToggleBtn');
   
   if (savedTheme === 'light') {
-    document.body.classList.add('light-theme');
-    if (btn) btn.innerHTML = '🌙 Dark Mode';
+    document.body.style.backgroundColor = '#f8fafc';
+    document.body.style.color = '#0f172a';
+    if (btn) btn.innerHTML = '☀️ Light Mode';
   }
 });
     </script>
