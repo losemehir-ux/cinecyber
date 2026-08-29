@@ -126,6 +126,7 @@
             height: 420px;
             object-fit: cover;
             display: block;
+            background-color: #222;
         }
 
         .movie-info {
@@ -183,7 +184,7 @@
             <button class="cat-btn active" onclick="filterCategory('all')">🔥 All</button>
             <button class="cat-btn" onclick="filterCategory('hollywood')">🎬 Hollywood</button>
             <button class="cat-btn" onclick="filterCategory('bollywood')">🍿 Bollywood</button>
-            <button class="cat-btn" onclick="filterCategory('cyber')">💻 Cyber/Sci-Fi</button>
+            <button class="cat-btn" onclick="filterCategory('korean')">🇰🇷 Korean</button>
         </div>
 
         <!-- Section Title -->
@@ -191,107 +192,141 @@
 
         <!-- Movie List Grid -->
         <div id="movieGrid">
-            <!-- 1. The Matrix -->
-            <div class="movie-card" data-category="hollywood cyber" data-title="the matrix">
-                <img src="https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg" class="movie-poster" alt="The Matrix">
-                <div class="movie-info">
-                    <div class="movie-rating">★ 8.7/10 (1999)</div>
-                    <div class="movie-name">The Matrix</div>
-                </div>
-                <button class="details-btn" onclick="alert('The Matrix (1999)\nDirected by: The Wachowskis\n\nPlot: A computer hacker (Keanu Reeves as Neo) discovers that everyday life is actually a simulated reality created by machines to enslave humanity.')">Details</button>
+            <!-- ================= HOLLYWOOD (15) ================= -->
+            <div class="movie-card" data-category="hollywood" data-title="the matrix">
+                <img src="https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg" class="movie-poster" alt="The Matrix">
+                <div class="movie-info"><div class="movie-rating">★ 8.7/10</div><div class="movie-name">The Matrix</div></div>
+                <button class="details-btn" onclick="alert('The Matrix (1999): A computer hacker learns the true nature of his reality and his role in the war against its controllers.')">Details</button>
             </div>
 
-            <!-- 2. Interstellar -->
-            <div class="movie-card" data-category="hollywood cyber" data-title="interstellar">
-                <img src="https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg" class="movie-poster" alt="Interstellar">
-                <div class="movie-info">
-                    <div class="movie-rating">★ 8.6/10 (2014)</div>
-                    <div class="movie-name">Interstellar</div>
-                </div>
-                <button class="details-btn" onclick="alert('Interstellar (2014)\nDirected by: Christopher Nolan\n\nPlot: When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.')">Details</button>
+            <div class="movie-card" data-category="hollywood" data-title="interstellar">
+                <img src="https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" class="movie-poster" alt="Interstellar">
+                <div class="movie-info"><div class="movie-rating">★ 8.7/10</div><div class="movie-name">Interstellar</div></div>
+                <button class="details-btn" onclick="alert('Interstellar (2014): Explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.')">Details</button>
             </div>
 
-            <!-- 3. 3 Idiots -->
+            <div class="movie-card" data-category="hollywood" data-title="inception">
+                <img src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg" class="movie-poster" alt="Inception">
+                <div class="movie-info"><div class="movie-rating">★ 8.8/10</div><div class="movie-name">Inception</div></div>
+                <button class="details-btn" onclick="alert('Inception (2010): A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="the dark knight">
+                <img src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg" class="movie-poster" alt="The Dark Knight">
+                <div class="movie-info"><div class="movie-rating">★ 9.0/10</div><div class="movie-name">The Dark Knight</div></div>
+                <button class="details-btn" onclick="alert('The Dark Knight (2008): When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="avengers endgame">
+                <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg" class="movie-poster" alt="Avengers: Endgame">
+                <div class="movie-info"><div class="movie-rating">★ 8.4/10</div><div class="movie-name">Avengers: Endgame</div></div>
+                <button class="details-btn" onclick="alert('Avengers: Endgame (2019): After the devastating events of Infinity War, the universe is in ruins. The Avengers assemble once more to reverse Thanos actions.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="avatar">
+                <img src="https://m.media-amazon.com/images/M/MV5BZDA0OGQxNTItMDZkMC00N2UyLWIwMzktZTYyYjJmYjA5ZjQzXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg" class="movie-poster" alt="Avatar">
+                <div class="movie-info"><div class="movie-rating">★ 7.9/10</div><div class="movie-name">Avatar</div></div>
+                <button class="details-btn" onclick="alert('Avatar (2009): A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="titanic">
+                <img src="https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg" class="movie-poster" alt="Titanic">
+                <div class="movie-info"><div class="movie-rating">★ 7.9/10</div><div class="movie-name">Titanic</div></div>
+                <button class="details-btn" onclick="alert('Titanic (1997): A seventeen-year-old aristocrat falls in love with a kind, poor artist aboard the luxurious, ill-fated R.M.S. Titanic.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="gladiator">
+                <img src="https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1XkEyXkFqcGdeQXVyNTU3OTgyODk@._V1_SX300.jpg" class="movie-poster" alt="Gladiator">
+                <div class="movie-info"><div class="movie-rating">★ 8.5/10</div><div class="movie-name">Gladiator</div></div>
+                <button class="details-btn" onclick="alert('Gladiator (2000): A former Roman general sets out to exact vengeance against the corrupt emperor who murdered his family.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="joker">
+                <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGQtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg" class="movie-poster" alt="Joker">
+                <div class="movie-info"><div class="movie-rating">★ 8.4/10</div><div class="movie-name">Joker</div></div>
+                <button class="details-btn" onclick="alert('Joker (2019): During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="spider-man into the spider-verse">
+                <img src="https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_SX300.jpg" class="movie-poster" alt="Spider-Man: Into the Spider-Verse">
+                <div class="movie-info"><div class="movie-rating">★ 8.4/10</div><div class="movie-name">Spider-Man: Into the Spider-Verse</div></div>
+                <button class="details-btn" onclick="alert('Spider-Man: Into the Spider-Verse (2018): Teenager Miles Morales becomes the Spider-Man of his universe, and must cross paths with five counterparts from other dimensions.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="interstellar">
+                <img src="https://m.media-amazon.com/images/M/MV5BNGI1MTlhYjEtNGE5NC00NmQ4LThmZjQtOGJlZTM2OTczMWQ0XkEyXkFqcGdeQXVyMDM1NDM0OQ@@._V1_SX300.jpg" class="movie-poster" alt="The Lord of the Rings: The Fellowship of the Ring">
+                <div class="movie-info"><div class="movie-rating">★ 8.8/10</div><div class="movie-name">LOTR: Fellowship of the Ring</div></div>
+                <button class="details-btn" onclick="alert('LOTR (2001): A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="fight club">
+                <img src="https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3NG00MjY3LTg1OTUtMWYxMzcwNTY3NzVhXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX300.jpg" class="movie-poster" alt="Fight Club">
+                <div class="movie-info"><div class="movie-rating">★ 8.8/10</div><div class="movie-name">Fight Club</div></div>
+                <button class="details-btn" onclick="alert('Fight Club (1999): An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="pulp fiction">
+                <img src="https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" class="movie-poster" alt="Pulp Fiction">
+                <div class="movie-info"><div class="movie-rating">★ 8.9/10</div><div class="movie-name">Pulp Fiction</div></div>
+                <button class="details-btn" onclick="alert('Pulp Fiction (1994): The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="oppenheimer">
+                <img src="https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_SX300.jpg" class="movie-poster" alt="Oppenheimer">
+                <div class="movie-info"><div class="movie-rating">★ 8.9/10</div><div class="movie-name">Oppenheimer</div></div>
+                <button class="details-btn" onclick="alert('Oppenheimer (2023): The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="hollywood" data-title="forrest gump">
+                <img src="https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg" class="movie-poster" alt="Forrest Gump">
+                <div class="movie-info"><div class="movie-rating">★ 8.8/10</div><div class="movie-name">Forrest Gump</div></div>
+                <button class="details-btn" onclick="alert('Forrest Gump (1994): The presidencies of Kennedy and Johnson, the Vietnam War, and other historic events unfold from the perspective of an Alabama man with an IQ of 75.')">Details</button>
+            </div>
+
+
+            <!-- ================= BOLLYWOOD (15) ================= -->
             <div class="movie-card" data-category="bollywood" data-title="3 idiots">
-                <img src="https://upload.wikimedia.org/wikipedia/en/d/df/3_idiots_poster.jpg" class="movie-poster" alt="3 Idiots">
-                <div class="movie-info">
-                    <div class="movie-rating">★ 8.4/10 (2009)</div>
-                    <div class="movie-name">3 Idiots</div>
-                </div>
-                <button class="details-btn" onclick="alert('3 Idiots (2009)\nDirected by: Rajkumar Hirani\n\nPlot: Two friends are searching for their long lost college companion. They revisit their college days and remember the memories of their friend who inspired them to think differently, even as the rest of the world called them idiots.')">Details</button>
+                <img src="https://m.media-amazon.com/images/M/MV5BNTkyOGVjMGEtNmQzZi00NzFlLTlhOWQtNmY3YTFjNmNhY2JjXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg" class="movie-poster" alt="3 Idiots">
+                <div class="movie-info"><div class="movie-rating">★ 8.4/10</div><div class="movie-name">3 Idiots</div></div>
+                <button class="details-btn" onclick="alert('3 Idiots (2009): Two friends search for their long lost college companion, revisiting college memories along the way.')">Details</button>
             </div>
 
-            <!-- 4. Pathaan -->
+            <div class="movie-card" data-category="bollywood" data-title="dangal">
+                <img src="https://m.media-amazon.com/images/M/MV5BMTQ4MzQzMzM2Nl5BMl5BanBnXkFtZTgwMTQ1NzU3MDI@._V1_SX300.jpg" class="movie-poster" alt="Dangal">
+                <div class="movie-info"><div class="movie-rating">★ 8.4/10</div><div class="movie-name">Dangal</div></div>
+                <button class="details-btn" onclick="alert('Dangal (2016): Former wrestler Mahavir Singh Phogat trains his daughters to become world-class wrestlers against all societal odds.')">Details</button>
+            </div>
+
             <div class="movie-card" data-category="bollywood" data-title="pathaan">
-                <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Pathaan_film_poster.jpg" class="movie-poster" alt="Pathaan">
-                <div class="movie-info">
-                    <div class="movie-rating">★ 5.9/10 (2023)</div>
-                    <div class="movie-name">Pathaan</div>
-                </div>
-                <button class="details-btn" onclick="alert('Pathaan (2023)\nDirected by: Siddharth Anand\n\nPlot: An exiled RAW agent is assigned to take down a ruthless terrorist outfit called Outfit X, led by Jim, who is planning a massive biological attack on India.')">Details</button>
+                <img src="https://m.media-amazon.com/images/M/MV5BY2Q0OGNlNzEtZDgwMC00YWE2LTk2ZjctOTM2NDQ3NzliZTc1XkEyXkFqcGdeQXVyMTUzNTgzNzM0._V1_SX300.jpg" class="movie-poster" alt="Pathaan">
+                <div class="movie-info"><div class="movie-rating">★ 5.9/10</div><div class="movie-name">Pathaan</div></div>
+                <button class="details-btn" onclick="alert('Pathaan (2023): An exiled RAW agent comes back to stop a massive terror attack planned by a ruthless rogue agent.')">Details</button>
             </div>
 
-            <!-- 5. Mr. Robot -->
-            <div class="movie-card" data-category="cyber" data-title="mr robot">
-                <img src="https://upload.wikimedia.org/wikipedia/en/1/18/Mr._Robot_First_Season_Poster.jpg" class="movie-poster" alt="Mr. Robot">
-                <div class="movie-info">
-                    <div class="movie-rating">★ 8.5/10 (2015-2019)</div>
-                    <div class="movie-name">Mr. Robot</div>
-                </div>
-                <button class="details-btn" onclick="alert('Mr. Robot Series (2015-2019)\nCreated by: Sam Esmail\n\nPlot: Elliot Alderson, a young cybersecurity engineer suffering from social anxiety disorder and clinical depression, is recruited by an insurrectionary anarchist known as Mr. Robot to join a group of hacktivists.')">Details</button>
+            <div class="movie-card" data-category="bollywood" data-title="sholay">
+                <img src="https://m.media-amazon.com/images/M/MV5BYzA2Zjk4ZmYtMTgzZi00MDIyLWI5MzEtZTY2ZjBiMGFlZDkwXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg" class="movie-poster" alt="Sholay">
+                <div class="movie-info"><div class="movie-rating">★ 8.1/10</div><div class="movie-name">Sholay</div></div>
+                <button class="details-btn" onclick="alert('Sholay (1975): A retired police officer hires two criminals to capture a ruthless bandit who massacred a village.')">Details</button>
             </div>
-        </div>
-    </div>
 
-    <script>
-        // Dark & Light Mode Toggle
-        function toggleTheme() {
-            const body = document.body;
-            const btn = document.getElementById('themeToggleBtn');
-            
-            if (body.style.backgroundColor === 'rgb(248, 250, 252)') {
-                body.style.backgroundColor = '#0b0b0b';
-                body.style.color = '#f1f1f1';
-                localStorage.setItem('userTheme', 'dark');
-                if (btn) btn.innerHTML = '🌙 Dark Mode';
-            } else {
-                body.style.backgroundColor = '#f8fafc';
-                body.style.color = '#0f172a';
-                localStorage.setItem('userTheme', 'light');
-                if (btn) btn.innerHTML = '☀️ Light Mode';
-            }
-        }
+            <div class="movie-card" data-category="bollywood" data-title="drishyam">
+                <img src="https://m.media-amazon.com/images/M/MV5BYmJhZmUzMDItZWMzYy00YTgwLWI5ZjctOGM1MjVjNGE1MzkyXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg" class="movie-poster" alt="Drishyam">
+                <div class="movie-info"><div class="movie-rating">★ 8.2/10</div><div class="movie-name">Drishyam</div></div>
+                <button class="details-btn" onclick="alert('Drishyam (2015): A man goes to extreme lengths to save his family from the fallout of an accidental crime.')">Details</button>
+            </div>
 
-        // Category Filter
-        function filterCategory(category) {
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+            <div class="movie-card" data-category="bollywood" data-title="dilwale dulhania le jayenge">
+                <img src="https://m.media-amazon.com/images/M/MV5MGUwZmMwOWYtYWZjNC00NDZjLThmNjItOWZjZjcxZjNkMjBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg" class="movie-poster" alt="Dilwale Dulhania Le Jayenge">
+                <div class="movie-info"><div class="movie-rating">★ 8.0/10</div><div class="movie-name">Dilwale Dulhania Le Jayenge</div></div>
+                <button class="details-btn" onclick="alert('DDLJ (1995): A young man and woman fall in love during a European trip, but struggle to win over her traditional family.')">Details</button>
+            </div>
 
-            let cards = document.querySelectorAll('.movie-card');
-            cards.forEach(card => {
-                let catAttr = card.getAttribute('data-category');
-                if (category === 'all' || catAttr.includes(category)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
+            <div class="movie-card" data-category="bollywood" data-title="jawan">
+                <img src="https://m.media-amazon.com/images/M/MV5BOWQ3MjE0ZjUtODQ4NS00ZWQ2LWEyMWYtMTM2YmMyNDFhMjY5XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg" class="movie-poster" alt="Jawan">
+                <div class="movie-info"><div class="movie-rating">★ 7.0/10</div><div class="movie-name">Jawan</div></div>
+                <button class="details-btn" onclick="alert('Jawan (2023): A high-octane thriller highlighting emotional journeys alongside social issues, featuring Shah Rukh Khan.')">Details</button>
+            </div>
 
-        // Search Filter
-        function filterMovies() {
-            let query = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.querySelectorAll('.movie-card');
-
-            cards.forEach(card => {
-                let title = card.getAttribute('data-title');
-                if (title.includes(query)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
-</body>
-                </html>
+            <div class="movie-card" data-category="bollywood" data-title="kgf chapter 2">
+                <img src="https://m.media-amazon.com/images/M/MV5BMjMwMjEzODEtOTQxOC00ZDQ2LTljYjUtYjUwMmNmY2ZkNmFhXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_SX300.jpg" class="movie-poster" alt="K.G.F: Chapter 2">
+                <div class="movie-info"><div class="movie-rating">★ 8.3/10</div><div class="movie-name">K.G.F: Chapter 2<
