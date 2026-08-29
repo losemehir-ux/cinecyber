@@ -130,7 +130,7 @@
         }
 
         .movie-info {
-            padding: 15px 15px 5px 15px;
+            padding: 15px 15px 10px 15px;
         }
 
         .movie-rating {
@@ -145,6 +145,53 @@
             font-weight: 700;
             color: #fff;
             margin-bottom: 15px;
+        }
+
+        /* Rating Stars inside card */
+        .star-rating {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .star {
+            font-size: 22px;
+            color: #444;
+            transition: color 0.2s;
+        }
+
+        .star.rated {
+            color: #f3cc00;
+        }
+
+        .rating-input {
+            width: 100%;
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 8px 10px;
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 8px;
+            outline: none;
+        }
+
+        .submit-rating-btn {
+            width: 100%;
+            background-color: #f3cc00;
+            color: #000;
+            border: none;
+            padding: 9px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .submit-rating-btn:hover {
+            background-color: #d9b500;
         }
 
         .details-btn {
@@ -195,138 +242,676 @@
             <!-- ================= HOLLYWOOD (15) ================= -->
             <div class="movie-card" data-category="hollywood" data-title="the matrix">
                 <img src="https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg" class="movie-poster" alt="The Matrix">
-                <div class="movie-info"><div class="movie-rating">★ 8.7/10</div><div class="movie-name">The Matrix</div></div>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.7/10</div>
+                    <div class="movie-name">The Matrix</div>
+                    <div class="star-rating" data-movie="The Matrix">
+                        <span class="star" onclick="setRating(this, 1)">★</span>
+                        <span class="star" onclick="setRating(this, 2)">★</span>
+                        <span class="star" onclick="setRating(this, 3)">★</span>
+                        <span class="star" onclick="setRating(this, 4)">★</span>
+                        <span class="star" onclick="setRating(this, 5)">★</span>
+                    </div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'The Matrix')">Submit Rating</button>
+                </div>
                 <button class="details-btn" onclick="alert('The Matrix (1999): A computer hacker learns the true nature of his reality and his role in the war against its controllers.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="interstellar">
                 <img src="https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" class="movie-poster" alt="Interstellar">
-                <div class="movie-info"><div class="movie-rating">★ 8.7/10</div><div class="movie-name">Interstellar</div></div>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.7/10</div>
+                    <div class="movie-name">Interstellar</div>
+                    <div class="star-rating" data-movie="Interstellar">
+                        <span class="star" onclick="setRating(this, 1)">★</span>
+                        <span class="star" onclick="setRating(this, 2)">★</span>
+                        <span class="star" onclick="setRating(this, 3)">★</span>
+                        <span class="star" onclick="setRating(this, 4)">★</span>
+                        <span class="star" onclick="setRating(this, 5)">★</span>
+                    </div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Interstellar')">Submit Rating</button>
+                </div>
                 <button class="details-btn" onclick="alert('Interstellar (2014): Explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="inception">
                 <img src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg" class="movie-poster" alt="Inception">
-                <div class="movie-info"><div class="movie-rating">★ 8.8/10</div><div class="movie-name">Inception</div></div>
-                <button class="details-btn" onclick="alert('Inception (2010): A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.8/10</div>
+                    <div class="movie-name">Inception</div>
+                    <div class="star-rating" data-movie="Inception">
+                        <span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span>
+                    </div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Inception')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Inception (2010): A thief who steals corporate secrets through dream-sharing technology is given the task of planting an idea.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="the dark knight">
                 <img src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg" class="movie-poster" alt="The Dark Knight">
-                <div class="movie-info"><div class="movie-rating">★ 9.0/10</div><div class="movie-name">The Dark Knight</div></div>
-                <button class="details-btn" onclick="alert('The Dark Knight (2008): When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 9.0/10</div>
+                    <div class="movie-name">The Dark Knight</div>
+                    <div class="star-rating" data-movie="The Dark Knight">
+                        <span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span>
+                    </div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'The Dark Knight')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('The Dark Knight (2008): Batman faces his greatest psychological test against the Joker.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="avengers endgame">
                 <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg" class="movie-poster" alt="Avengers: Endgame">
-                <div class="movie-info"><div class="movie-rating">★ 8.4/10</div><div class="movie-name">Avengers: Endgame</div></div>
-                <button class="details-btn" onclick="alert('Avengers: Endgame (2019): After the devastating events of Infinity War, the universe is in ruins. The Avengers assemble once more to reverse Thanos actions.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.4/10</div>
+                    <div class="movie-name">Avengers: Endgame</div>
+                    <div class="star-rating" data-movie="Avengers: Endgame">
+                        <span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span>
+                    </div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Avengers: Endgame')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Avengers: Endgame (2019): The Avengers assemble once more to reverse Thanos actions.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="avatar">
                 <img src="https://m.media-amazon.com/images/M/MV5BZDA0OGQxNTItMDZkMC00N2UyLWIwMzktZTYyYjJmYjA5ZjQzXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg" class="movie-poster" alt="Avatar">
-                <div class="movie-info"><div class="movie-rating">★ 7.9/10</div><div class="movie-name">Avatar</div></div>
-                <button class="details-btn" onclick="alert('Avatar (2009): A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.9/10</div>
+                    <div class="movie-name">Avatar</div>
+                    <div class="star-rating" data-movie="Avatar">
+                        <span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span>
+                    </div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Avatar')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Avatar (2009): A marine on Pandora becomes torn between orders and protecting the world.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="titanic">
                 <img src="https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg" class="movie-poster" alt="Titanic">
-                <div class="movie-info"><div class="movie-rating">★ 7.9/10</div><div class="movie-name">Titanic</div></div>
-                <button class="details-btn" onclick="alert('Titanic (1997): A seventeen-year-old aristocrat falls in love with a kind, poor artist aboard the luxurious, ill-fated R.M.S. Titanic.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.9/10</div>
+                    <div class="movie-name">Titanic</div>
+                    <div class="star-rating" data-movie="Titanic"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Titanic')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Titanic (1997): A romance aboard the ill-fated ship.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="gladiator">
                 <img src="https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1XkEyXkFqcGdeQXVyNTU3OTgyODk@._V1_SX300.jpg" class="movie-poster" alt="Gladiator">
-                <div class="movie-info"><div class="movie-rating">★ 8.5/10</div><div class="movie-name">Gladiator</div></div>
-                <button class="details-btn" onclick="alert('Gladiator (2000): A former Roman general sets out to exact vengeance against the corrupt emperor who murdered his family.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.5/10</div>
+                    <div class="movie-name">Gladiator</div>
+                    <div class="star-rating" data-movie="Gladiator"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Gladiator')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Gladiator (2000): A Roman general seeks revenge.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="joker">
                 <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGQtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg" class="movie-poster" alt="Joker">
-                <div class="movie-info"><div class="movie-rating">★ 8.4/10</div><div class="movie-name">Joker</div></div>
-                <button class="details-btn" onclick="alert('Joker (2019): During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.4/10</div>
+                    <div class="movie-name">Joker</div>
+                    <div class="star-rating" data-movie="Joker"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Joker')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Joker (2019): A failed comedian turns to crime.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="spider-man into the spider-verse">
-                <img src="https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_SX300.jpg" class="movie-poster" alt="Spider-Man: Into the Spider-Verse">
-                <div class="movie-info"><div class="movie-rating">★ 8.4/10</div><div class="movie-name">Spider-Man: Into the Spider-Verse</div></div>
-                <button class="details-btn" onclick="alert('Spider-Man: Into the Spider-Verse (2018): Teenager Miles Morales becomes the Spider-Man of his universe, and must cross paths with five counterparts from other dimensions.')">Details</button>
+                <img src="https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_SX300.jpg" class="movie-poster" alt="Spider-Man">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.4/10</div>
+                    <div class="movie-name">Spider-Man: Into the Spider-Verse</div>
+                    <div class="star-rating" data-movie="Spider-Verse"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Spider-Verse')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Spider-Verse: Miles Morales becomes Spider-Man.')">Details</button>
             </div>
 
-            <div class="movie-card" data-category="hollywood" data-title="interstellar">
-                <img src="https://m.media-amazon.com/images/M/MV5BNGI1MTlhYjEtNGE5NC00NmQ4LThmZjQtOGJlZTM2OTczMWQ0XkEyXkFqcGdeQXVyMDM1NDM0OQ@@._V1_SX300.jpg" class="movie-poster" alt="The Lord of the Rings: The Fellowship of the Ring">
-                <div class="movie-info"><div class="movie-rating">★ 8.8/10</div><div class="movie-name">LOTR: Fellowship of the Ring</div></div>
-                <button class="details-btn" onclick="alert('LOTR (2001): A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring.')">Details</button>
+            <div class="movie-card" data-category="hollywood" data-title="lotr fellowship of the ring">
+                <img src="https://m.media-amazon.com/images/M/MV5BNGI1MTlhYjEtNGE5NC00NmQ4LThmZjQtOGJlZTM2OTczMWQ0XkEyXkFqcGdeQXVyMDM1NDM0OQ@@._V1_SX300.jpg" class="movie-poster" alt="LOTR">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.8/10</div>
+                    <div class="movie-name">LOTR: Fellowship of the Ring</div>
+                    <div class="star-rating" data-movie="LOTR"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'LOTR')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('LOTR: Journey to destroy the One Ring.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="fight club">
                 <img src="https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3NG00MjY3LTg1OTUtMWYxMzcwNTY3NzVhXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX300.jpg" class="movie-poster" alt="Fight Club">
-                <div class="movie-info"><div class="movie-rating">★ 8.8/10</div><div class="movie-name">Fight Club</div></div>
-                <button class="details-btn" onclick="alert('Fight Club (1999): An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.8/10</div>
+                    <div class="movie-name">Fight Club</div>
+                    <div class="star-rating" data-movie="Fight Club"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Fight Club')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Fight Club: An underground fight club.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="pulp fiction">
                 <img src="https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" class="movie-poster" alt="Pulp Fiction">
-                <div class="movie-info"><div class="movie-rating">★ 8.9/10</div><div class="movie-name">Pulp Fiction</div></div>
-                <button class="details-btn" onclick="alert('Pulp Fiction (1994): The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.9/10</div>
+                    <div class="movie-name">Pulp Fiction</div>
+                    <div class="star-rating" data-movie="Pulp Fiction"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Pulp Fiction')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Pulp Fiction: Tales of violence and redemption.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="oppenheimer">
                 <img src="https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_SX300.jpg" class="movie-poster" alt="Oppenheimer">
-                <div class="movie-info"><div class="movie-rating">★ 8.9/10</div><div class="movie-name">Oppenheimer</div></div>
-                <button class="details-btn" onclick="alert('Oppenheimer (2023): The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.9/10</div>
+                    <div class="movie-name">Oppenheimer</div>
+                    <div class="star-rating" data-movie="Oppenheimer"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Oppenheimer')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Oppenheimer: The story of the atomic bomb.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="hollywood" data-title="forrest gump">
                 <img src="https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg" class="movie-poster" alt="Forrest Gump">
-                <div class="movie-info"><div class="movie-rating">★ 8.8/10</div><div class="movie-name">Forrest Gump</div></div>
-                <button class="details-btn" onclick="alert('Forrest Gump (1994): The presidencies of Kennedy and Johnson, the Vietnam War, and other historic events unfold from the perspective of an Alabama man with an IQ of 75.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.8/10</div>
+                    <div class="movie-name">Forrest Gump</div>
+                    <div class="star-rating" data-movie="Forrest Gump"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Forrest Gump')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Forrest Gump: The life of an extraordinary man.')">Details</button>
             </div>
 
 
             <!-- ================= BOLLYWOOD (15) ================= -->
             <div class="movie-card" data-category="bollywood" data-title="3 idiots">
                 <img src="https://m.media-amazon.com/images/M/MV5BNTkyOGVjMGEtNmQzZi00NzFlLTlhOWQtNmY3YTFjNmNhY2JjXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg" class="movie-poster" alt="3 Idiots">
-                <div class="movie-info"><div class="movie-rating">★ 8.4/10</div><div class="movie-name">3 Idiots</div></div>
-                <button class="details-btn" onclick="alert('3 Idiots (2009): Two friends search for their long lost college companion, revisiting college memories along the way.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.4/10</div>
+                    <div class="movie-name">3 Idiots</div>
+                    <div class="star-rating" data-movie="3 Idiots"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, '3 Idiots')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('3 Idiots (2009): College friends search for their companion.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="bollywood" data-title="dangal">
                 <img src="https://m.media-amazon.com/images/M/MV5BMTQ4MzQzMzM2Nl5BMl5BanBnXkFtZTgwMTQ1NzU3MDI@._V1_SX300.jpg" class="movie-poster" alt="Dangal">
-                <div class="movie-info"><div class="movie-rating">★ 8.4/10</div><div class="movie-name">Dangal</div></div>
-                <button class="details-btn" onclick="alert('Dangal (2016): Former wrestler Mahavir Singh Phogat trains his daughters to become world-class wrestlers against all societal odds.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.4/10</div>
+                    <div class="movie-name">Dangal</div>
+                    <div class="star-rating" data-movie="Dangal"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Dangal')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Dangal (2016): Wrestling training journey.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="bollywood" data-title="pathaan">
                 <img src="https://m.media-amazon.com/images/M/MV5BY2Q0OGNlNzEtZDgwMC00YWE2LTk2ZjctOTM2NDQ3NzliZTc1XkEyXkFqcGdeQXVyMTUzNTgzNzM0._V1_SX300.jpg" class="movie-poster" alt="Pathaan">
-                <div class="movie-info"><div class="movie-rating">★ 5.9/10</div><div class="movie-name">Pathaan</div></div>
-                <button class="details-btn" onclick="alert('Pathaan (2023): An exiled RAW agent comes back to stop a massive terror attack planned by a ruthless rogue agent.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 5.9/10</div>
+                    <div class="movie-name">Pathaan</div>
+                    <div class="star-rating" data-movie="Pathaan"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Pathaan')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Pathaan (2023): An exiled RAW agent stops a terror attack.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="bollywood" data-title="sholay">
                 <img src="https://m.media-amazon.com/images/M/MV5BYzA2Zjk4ZmYtMTgzZi00MDIyLWI5MzEtZTY2ZjBiMGFlZDkwXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg" class="movie-poster" alt="Sholay">
-                <div class="movie-info"><div class="movie-rating">★ 8.1/10</div><div class="movie-name">Sholay</div></div>
-                <button class="details-btn" onclick="alert('Sholay (1975): A retired police officer hires two criminals to capture a ruthless bandit who massacred a village.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.1/10</div>
+                    <div class="movie-name">Sholay</div>
+                    <div class="star-rating" data-movie="Sholay"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Sholay')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Sholay (1975): Catching a ruthless bandit.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="bollywood" data-title="drishyam">
                 <img src="https://m.media-amazon.com/images/M/MV5BYmJhZmUzMDItZWMzYy00YTgwLWI5ZjctOGM1MjVjNGE1MzkyXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg" class="movie-poster" alt="Drishyam">
-                <div class="movie-info"><div class="movie-rating">★ 8.2/10</div><div class="movie-name">Drishyam</div></div>
-                <button class="details-btn" onclick="alert('Drishyam (2015): A man goes to extreme lengths to save his family from the fallout of an accidental crime.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.2/10</div>
+                    <div class="movie-name">Drishyam</div>
+                    <div class="star-rating" data-movie="Drishyam"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Drishyam')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Drishyam (2015): Protecting family from a crime fallout.')">Details</button>
             </div>
 
-            <div class="movie-card" data-category="bollywood" data-title="dilwale dulhania le jayenge">
-                <img src="https://m.media-amazon.com/images/M/MV5MGUwZmMwOWYtYWZjNC00NDZjLThmNjItOWZjZjcxZjNkMjBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg" class="movie-poster" alt="Dilwale Dulhania Le Jayenge">
-                <div class="movie-info"><div class="movie-rating">★ 8.0/10</div><div class="movie-name">Dilwale Dulhania Le Jayenge</div></div>
-                <button class="details-btn" onclick="alert('DDLJ (1995): A young man and woman fall in love during a European trip, but struggle to win over her traditional family.')">Details</button>
+            <div class="movie-card" data-category="bollywood" data-title="ddlj">
+                <img src="https://m.media-amazon.com/images/M/MV5MGUwZmMwOWYtYWZjNC00NDZjLThmNjItOWZjZjcxZjNkMjBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg" class="movie-poster" alt="DDLJ">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.0/10</div>
+                    <div class="movie-name">Dilwale Dulhania Le Jayenge</div>
+                    <div class="star-rating" data-movie="DDLJ"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'DDLJ')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('DDLJ (1995): Classic romance story.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="bollywood" data-title="jawan">
                 <img src="https://m.media-amazon.com/images/M/MV5BOWQ3MjE0ZjUtODQ4NS00ZWQ2LWEyMWYtMTM2YmMyNDFhMjY5XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg" class="movie-poster" alt="Jawan">
-                <div class="movie-info"><div class="movie-rating">★ 7.0/10</div><div class="movie-name">Jawan</div></div>
-                <button class="details-btn" onclick="alert('Jawan (2023): A high-octane thriller highlighting emotional journeys alongside social issues, featuring Shah Rukh Khan.')">Details</button>
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.0/10</div>
+                    <div class="movie-name">Jawan</div>
+                    <div class="star-rating" data-movie="Jawan"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Jawan')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Jawan (2023): High-octane action thriller.')">Details</button>
             </div>
 
             <div class="movie-card" data-category="bollywood" data-title="kgf chapter 2">
-                <img src="https://m.media-amazon.com/images/M/MV5BMjMwMjEzODEtOTQxOC00ZDQ2LTljYjUtYjUwMmNmY2ZkNmFhXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_SX300.jpg" class="movie-poster" alt="K.G.F: Chapter 2">
-                <div class="movie-info"><div class="movie-rating">★ 8.3/10</div><div class="movie-name">K.G.F: Chapter 2<
+                <img src="https://m.media-amazon.com/images/M/MV5BMjMwMjEzODEtOTQxOC00ZDQ2LTljYjUtYjUwMmNmY2ZkNmFhXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_SX300.jpg" class="movie-poster" alt="KGF 2">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.3/10</div>
+                    <div class="movie-name">K.G.F: Chapter 2</div>
+                    <div class="star-rating" data-movie="KGF 2"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'KGF 2')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('KGF 2: Rocky rules the gold fields.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="bollywood" data-title="animal">
+                <img src="https://m.media-amazon.com/images/M/MV5BYWZhMDVjZmYtNmQ3Ny00YTQzLThmY2YtNmUyNjliMWE1ZWIzXkEyXkFqcGdeQXVyMTUzNTgzNzM0._V1_SX300.jpg" class="movie-poster" alt="Animal">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 6.2/10</div>
+                    <div class="movie-name">Animal</div>
+                    <div class="star-rating" data-movie="Animal"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Animal')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Animal (2023): A violent family saga.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="bollywood" data-title="znmd">
+                <img src="https://m.media-amazon.com/images/M/MV5BMjA2NDMzMzg3NV5BMl5BanBnXkFtZTcwNTQ4NzY2NQ@@._V1_SX300.jpg" class="movie-poster" alt="ZNMD">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.2/10</div>
+                    <div class="movie-name">Zindagi Na Milegi Dobara</div>
+                    <div class="star-rating" data-movie="ZNMD"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'ZNMD')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('ZNMD: Bachelor trip to Spain.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="bollywood" data-title="pk">
+                <img src="https://m.media-amazon.com/images/M/MV5BMTgzMjQzMDA5Ml5BMl5BanBnXkFtZTgwMTcxNTUyMzE@._V1_SX300.jpg" class="movie-poster" alt="PK">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.1/10</div>
+                    <div class="movie-name">PK</div>
+                    <div class="star-rating" data-movie="PK"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'PK')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('PK (2014): An alien questions religious dogmas.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="bollywood" data-title="baahubali 2">
+                <img src="https://m.media-amazon.com/images/M/MV5BNTA2NDU3NjM1M15BMl5BanBnXkFtZTgwNTU5Nzc4MTI@._V1_SX300.jpg" class="movie-poster" alt="Baahubali 2">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.2/10</div>
+                    <div class="movie-name">Baahubali 2</div>
+                    <div class="star-rating" data-movie="Baahubali 2"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Baahubali 2')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Baahubali 2: The epic conclusion.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="bollywood" data-title="stree 2">
+                <img src="https://m.media-amazon.com/images/M/MV5BMGU5MGMyM2QtNjRiMy00MGMwLWI4ODctOGEwYmU5ODMwZWYyXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_SX300.jpg" class="movie-poster" alt="Stree 2">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.5/10</div>
+                    <div class="movie-name">Stree 2</div>
+                    <div class="star-rating" data-movie="Stree 2"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Stree 2')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Stree 2: Supernatural comedy horror.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="bollywood" data-title="gadar 2">
+                <img src="https://m.media-amazon.com/images/M/MV5BMjY5MjMwMjEtMjY3OC00MmY1LWJiNjQtMjg4MzY1NTYyZTc1XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg" class="movie-poster" alt="Gadar 2">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 4.9/10</div>
+                    <div class="movie-name">Gadar 2</div>
+                    <div class="star-rating" data-movie="Gadar 2"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Gadar 2')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Gadar 2: Tara Singh returns.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="bollywood" data-title="brahmastra">
+                <img src="https://m.media-amazon.com/images/M/MV5BOTQ2MzEwNzY3MV5BMl5BanBnXkFtZTgwOTM5ODE5MDI@._V1_SX300.jpg" class="movie-poster" alt="Brahmastra">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 5.6/10</div>
+                    <div class="movie-name">Brahmastra Part One</div>
+                    <div class="star-rating" data-movie="Brahmastra"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Brahmastra')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Brahmastra: Fantasy weapon universe.')">Details</button>
+            </div>
+
+
+            <!-- ================= KOREAN (15) ================= -->
+            <div class="movie-card" data-category="korean" data-title="parasite">
+                <img src="https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg" class="movie-poster" alt="Parasite">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.5/10</div>
+                    <div class="movie-name">Parasite</div>
+                    <div class="star-rating" data-movie="Parasite"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Parasite')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Parasite (2019): Class discrimination thriller.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="train to busan">
+                <img src="https://m.media-amazon.com/images/M/MV5BMTkwOTQ4OTg0OV5BMl5BanBnXkFtZTgwMzQyOTM0OTE@._V1_SX300.jpg" class="movie-poster" alt="Train to Busan">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.6/10</div>
+                    <div class="movie-name">Train to Busan</div>
+                    <div class="star-rating" data-movie="Train to Busan"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Train to Busan')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Train to Busan (2016): Zombie outbreak on a train.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="oldboy">
+                <img src="https://m.media-amazon.com/images/M/MV5BMTI3NTQyMTU3Ml5BMl5BanBnXkFtZTcwMTM2MjgyMQ@@._V1_SX300.jpg" class="movie-poster" alt="Oldboy">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.4/10</div>
+                    <div class="movie-name">Oldboy</div>
+                    <div class="star-rating" data-movie="Oldboy"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Oldboy')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Oldboy (2003): Imprisoned for 15 years.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="squid game">
+                <img src="https://m.media-amazon.com/images/M/MV5BYWE3MDVkN2EtNjQ5MS00ZDQ4LTliNzYtMjc2YWMzZjNlNzYxXkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_SX300.jpg" class="movie-poster" alt="Squid Game">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.0/10</div>
+                    <div class="movie-name">Squid Game Series</div>
+                    <div class="star-rating" data-movie="Squid Game"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Squid Game')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Squid Game (2021): Deadly children games for cash.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="memories of murder">
+                <img src="https://m.media-amazon.com/images/M/MV5BMTkxNTk1ODkwNl5BMl5BanBnXkFtZTgwNDY0MjYxMTE@._V1_SX300.jpg" class="movie-poster" alt="Memories of Murder">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.1/10</div>
+                    <div class="movie-name">Memories of Murder</div>
+                    <div class="star-rating" data-movie="Memories of Murder"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Memories of Murder')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Memories of Murder (2003): Serial murders investigation.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="the handmaiden">
+                <img src="https://m.media-amazon.com/images/M/MV5BNDJhYTk2MTctZmVmOS00OTViLTkxMzAtZDIzYmIyYWY0YTZkXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" class="movie-poster" alt="The Handmaiden">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.1/10</div>
+                    <div class="movie-name">The Handmaiden</div>
+                    <div class="star-rating" data-movie="The Handmaiden"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'The Handmaiden')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('The Handmaiden (2016): Swindling a Japanese heiress.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="the wailing">
+                <img src="https://m.media-amazon.com/images/M/MV5BODMwZGU5NzUtNzVhMy00OWRkLThjMTgtZTkxMmQ2MWU0YWIyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" class="movie-poster" alt="The Wailing">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.4/10</div>
+                    <div class="movie-name">The Wailing</div>
+                    <div class="star-rating" data-movie="The Wailing"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'The Wailing')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('The Wailing (2016): Mysterious sickness in a village.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="i saw the devil">
+                <img src="https://m.media-amazon.com/images/M/MV5BYmU5ZDNhMDItODlkYy00MjIwLWFkNjQtN2Y4NzI0MGQ0ZjQ4XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" class="movie-poster" alt="I Saw the Devil">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.8/10</div>
+                    <div class="movie-name">I Saw the Devil</div>
+                    <div class="star-rating" data-movie="I Saw the Devil"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'I Saw the Devil')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('I Saw the Devil (2010): Revenge against a serial killer.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="sweet home">
+                <img src="https://m.media-amazon.com/images/M/MV5BZjkyNTNhMjctY2E4MS00ODUwLTg5YTgtMTM1ZWMwNmJjZTAwXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg" class="movie-poster" alt="Sweet Home">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.3/10</div>
+                    <div class="movie-name">Sweet Home Series</div>
+                    <div class="star-rating" data-movie="Sweet Home"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Sweet Home')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Sweet Home (2020): Fighting monstrous creatures.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="all of us are dead">
+                <img src="https://m.media-amazon.com/images/M/MV5BOGQyZjhlZTUtOTAyYy00OWFmLTliN2UtOWZmODNhYmEzMGQ3XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg" class="movie-poster" alt="All of Us Are Dead">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.5/10</div>
+                    <div class="movie-name">All of Us Are Dead</div>
+                    <div class="star-rating" data-movie="All of Us Are Dead"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'All of Us Are Dead')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('All of Us Are Dead (2022): Campus zombie outbreak.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="the call">
+                <img src="https://m.media-amazon.com/images/M/MV5BNTBmZjUyMWMtNjJlOC00NTk4LThjMGEtMWE0NmQ1MDRlZjcxXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" class="movie-poster" alt="The Call">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.1/10</div>
+                    <div class="movie-name">The Call</div>
+                    <div class="star-rating" data-movie="The Call"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'The Call')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('The Call (2020): Connecting across 20 years via phone.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="vagabond">
+                <img src="https://m.media-amazon.com/images/M/MV5BMjY5OTVlYTEtYjYwZi00YmU0LWJiNTYtNjE2NDY0MzkxMjQxXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" class="movie-poster" alt="Vagabond">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.1/10</div>
+                    <div class="movie-name">Vagabond Series</div>
+                    <div class="star-rating" data-movie="Vagabond"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Vagabond')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Vagabond (2019): International corruption scandal.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="the man from nowhere">
+                <img src="https://m.media-amazon.com/images/M/MV5BNTI2MWZlZmMtMWFmMy00OTI5LWFhMmQtZTU4ZDY4ZTZjNTU0XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" class="movie-poster" alt="The Man from Nowhere">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.7/10</div>
+                    <div class="movie-name">The Man from Nowhere</div>
+                    <div class="star-rating" data-movie="The Man from Nowhere"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'The Man from Nowhere')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('The Man from Nowhere (2010): Pawnshop keeper rampage.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="alive">
+                <img src="https://m.media-amazon.com/images/M/MV5BNWYwMzhmZDctYjRiMy00MGU2LTlhZDQtMDkwZDY2MWEzNWQwXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg" class="movie-poster" alt="#Alive">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 6.3/10</div>
+                    <div class="movie-name">#Alive</div>
+                    <div class="star-rating" data-movie="#Alive"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, '#Alive')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('#Alive (2020): Gamer trapped in apartment during infection.')">Details</button>
+            </div>
+
+            <div class="movie-card" data-category="korean" data-title="hellbound">
+                <img src="https://m.media-amazon.com/images/M/MV5BMGU5OGMyM2QtNjRiMy00MGMwLWI4ODctOGEwYmU5ODMwZWYyXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_SX300.jpg" class="movie-poster" alt="Hellbound">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 6.6/10</div>
+                    <div class="movie-name">Hellbound Series</div>
+                    <div class="star-rating" data-movie="Hellbound"><span class="star" onclick="setRating(this, 1)">★</span><span class="star" onclick="setRating(this, 2)">★</span><span class="star" onclick="setRating(this, 3)">★</span><span class="star" onclick="setRating(this, 4)">★</span><span class="star" onclick="setRating(this, 5)">★</span></div>
+                    <input type="text" class="rating-input" placeholder="Your Name...">
+                    <button class="submit-rating-btn" onclick="submitRating(this, 'Hellbound')">Submit Rating</button>
+                </div>
+                <button class="details-btn" onclick="alert('Hellbound (2021): Unearthly decrees to hell.')">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Yahan apni Google Apps Script ka Web App URL daal dena jo tumne pehle banaya tha!
+        const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+        // Store ratings temporarily in JS
+        const userRatings = {};
+
+        function setRating(starElement, ratingValue) {
+            const starContainer = starElement.parentElement;
+            const movieName = starContainer.getAttribute('data-movie');
+            userRatings[movieName] = ratingValue;
+
+            const stars = starContainer.querySelectorAll('.star');
+            stars.forEach((s, index) => {
+                if (index < ratingValue) {
+                    s.classList.add('rated');
+                } else {
+                    s.classList.remove('rated');
+                }
+            });
+        }
+
+        function submitRating(buttonElement, movieName) {
+            const cardInfo = buttonElement.parentElement;
+            const nameInput = cardInfo.querySelector('.rating-input');
+            const userName = nameInput.value.trim();
+            const rating = userRatings[movieName];
+
+            if (!userName) {
+                alert('Pehle apna naam toh likho!');
+                return;
+            }
+            if (!rating) {
+                alert('Kam az kam ek star select karo!');
+                return;
+            }
+
+            if(scriptURL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
+                alert("Rating saved locally! (Google Sheet URL set nahi hai code mein). Thank you, " + userName + "!");
+                nameInput.value = "";
+                return;
+            }
+
+            // Google Apps Script ko data bhejne ke liye
+            const formData = new FormData();
+            formData.append("Movie", movieName);
+            formData.append("Name", userName);
+            formData.append("Rating", rating);
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    alert('Shukriya ' + userName '! Aapki rating submit ho gayi hai.');
+                    nameInput.value = "";
+                })
+                .catch(error => {
+                    alert('Error aa gaya, dobara try karo!');
+                    console.error('Error!', error.message);
+                });
+        }
+
+        // Dark & Light Mode Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggleBtn');
+            
+            if (body.style.backgroundColor === 'rgb(248, 250, 252)') {
+                body.style.backgroundColor = '#0b0b0b';
+                body.style.color = '#f1f1f1';
+                if (btn) btn.innerHTML = '🌙 Dark Mode';
+            } else {
+                body.style.backgroundColor = '#f8fafc';
+                body.style.color = '#0f172a';
+                if (btn) btn.innerHTML = '☀️ Light Mode';
+            }
+        }
+
+        // Category Filter
+        function filterCategory(category) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            let cards = document.querySelectorAll('.movie-card');
+            cards.forEach(card => {
+                let catAttr = card.getAttribute('data-category');
+                if (category === 'all' || catAttr.includes(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Search Filter
+        function filterMovies() {
+            let query = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.querySelectorAll('.movie-card');
+
+            cards.forEach(card => {
+                let title = card.getAttribute('data-title');
+                if (title.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
