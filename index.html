@@ -3,590 +3,1034 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huafsnet - Ultimate Movie Database</title>
+    <title>CinePulse Ultimate - Professional Movie & Problem Solver Hub</title>
     <style>
-        :root {
-            --bg-color: #071f1c;
-            --text-color: #e0f7fa;
-            --card-bg: #0d2b27;
-            --header-bg: #031412;
-            --header-text: #00e5ff;
-            --border-color: #004d40;
-            --accent-glow: rgba(0, 229, 255, 0.2);
-        }
-
-        [data-theme="light"] {
-            --bg-color: #e0f2f1;
-            --text-color: #00251a;
-            --card-bg: #ffffff;
-            --header-bg: #004d40;
-            --header-text: #80d8ff;
-            --border-color: #b2dfdb;
-            --accent-glow: rgba(0, 0, 0, 0.1);
-        }
-
+        /* ==========================================================================
+           1. CSS RESET & GLOBAL VARIABLES
+           ========================================================================== */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --border-color: #334155;
+            --accent-color: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --star-color: #f59e0b;
+            --danger-color: #ef4444;
+            --success-color: #22c55e;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
         }
 
-        header {
-            background-color: var(--header-bg);
-            color: var(--header-text);
-            padding: 1.5rem 3rem;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+
+        /* ==========================================================================
+           2. LAYOUT CONTAINERS & NAVIGATION
+           ========================================================================== */
+        .app-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 20px;
+            flex: 1;
+        }
+
+        nav.navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid #00e5ff;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 15px 30px;
+            border-radius: 14px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
-        .logo-area {
+        .brand-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-decoration: none;
             display: flex;
-            flex-direction: column;
-        }
-
-        .logo {
-            font-size: 2.3rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: #00e5ff;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
-        }
-
-        .tagline {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            letter-spacing: 1px;
-        }
-
-        .search-container {
-            display: flex;
-            gap: 12px;
             align-items: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
         }
 
-        #searchBox {
-            padding: 12px 18px;
-            width: 340px;
-            border-radius: 30px;
-            border: 2px solid var(--border-color);
-            background: rgba(0, 0, 0, 0.3);
-            color: var(--text-color);
-            outline: none;
-            font-size: 1rem;
-        }
-
-        #searchBox:focus {
-            border-color: #00e5ff;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        #searchBox::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .theme-toggle {
-            background: #00e5ff;
-            color: #031412;
-            border: none;
-            padding: 10px 18px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
-        }
-
-        .theme-toggle:hover {
-            background: #80d8ff;
-            transform: scale(1.05);
-        }
-
-        .nav-categories {
+        .nav-stats {
             display: flex;
-            gap: 15px;
-            padding: 15px 3rem;
-            background: var(--card-bg);
-            border-bottom: 2px solid var(--border-color);
-            overflow-x: auto;
-        }
-
-        .cat-btn {
-            background: transparent;
-            border: 2px solid var(--border-color);
-            color: var(--text-color);
-            font-weight: 700;
-            cursor: pointer;
-            padding: 8px 18px;
-            border-radius: 20px;
+            gap: 20px;
             font-size: 0.95rem;
-            white-space: nowrap;
+            color: var(--text-muted);
         }
 
-        .cat-btn.active, .cat-btn:hover {
-            background: #00e5ff;
-            color: #031412;
-            border-color: #00e5ff;
-            box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+        .nav-stats span {
+            color: var(--text-main);
+            font-weight: 600;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 30px auto;
-            padding: 0 20px;
+        /* ==========================================================================
+           3. HEADER & HERO SECTION
+           ========================================================================== */
+        header.hero-section {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 10px;
         }
 
-        .movies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 25px;
+        header.hero-section h1 {
+            font-size: 3.2rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            font-weight: 900;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header.hero-section p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           4. CONTROLS: SEARCH & FILTER BAR
+           ========================================================================== */
+        .controls-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
             margin-bottom: 40px;
         }
 
-        .movie-card {
-            background: var(--card-bg);
+        .search-box-container {
+            position: relative;
+            flex: 1;
+            max-width: 650px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 24px 16px 50px;
+            font-size: 1.05rem;
+            border-radius: 35px;
             border: 2px solid var(--border-color);
-            border-radius: 12px;
+            background-color: var(--bg-secondary);
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+        }
+
+        .search-icon-symbol {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .filter-select {
+            padding: 0 20px;
+            font-size: 1rem;
+            border-radius: 35px;
+            border: 2px solid var(--border-color);
+            background-color: var(--bg-secondary);
+            color: var(--text-main);
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-select:focus {
+            border-color: var(--accent-color);
+        }
+
+        /* ==========================================================================
+           5. MOVIE GRID & CARD COMPONENTS
+           ========================================================================== */
+        .movie-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .movie-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.4);
+            position: relative;
         }
 
         .movie-card:hover {
-            transform: translateY(-5px);
-            border-color: #00e5ff;
-            box-shadow: 0 10px 25px rgba(0, 229, 255, 0.2);
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 30px -10px rgba(56, 189, 248, 0.2);
         }
 
-        .movie-card img {
-            width: 100%;
-            height: 310px;
+        .card-header-flex {
+            display: flex;
+            gap: 18px;
+            padding: 22px;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(to bottom, rgba(255,255,255,0.02), transparent);
+        }
+
+        .movie-poster-img {
+            width: 130px;
+            height: 185px;
+            border-radius: 10px;
             object-fit: cover;
-            background-color: #071f1c;
+            flex-shrink: 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            border: 1px solid var(--border-color);
         }
 
-        .movie-info {
-            padding: 15px;
+        .movie-meta-info {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            justify-content: flex-start;
+            flex: 1;
+        }
+
+        .movie-title-header {
+            font-size: 1.35rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .movie-year-badge {
+            color: var(--accent-color);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .movie-genre-badge {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            background: var(--bg-primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 1px solid var(--border-color);
+            align-self: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .favorite-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+            align-self: flex-start;
+            margin-top: 4px;
+        }
+
+        .favorite-btn:hover {
+            transform: scale(1.15);
+        }
+
+        .favorite-btn.favorited {
+            color: var(--danger-color);
+        }
+
+        /* Card Content Inner Sections */
+        .card-body-section {
+            padding: 22px;
             flex-grow: 1;
-        }
-
-        .movie-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .movie-meta {
-            font-size: 0.9rem;
-            opacity: 0.85;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .content-heading-label {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .movie-plot-text {
+            color: #cbd5e1;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .movie-cast-list {
+            list-style: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .movie-cast-list li {
+            margin-bottom: 4px;
+        }
+
+        .movie-cast-list strong {
+            color: #e2e8f0;
+        }
+
+        /* Rating Row Footer inside Card */
+        .card-rating-footer {
+            margin-top: auto;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 16px;
+            display: flex;
             align-items: center;
+            justify-content: space-between;
         }
 
-        .rating {
-            color: #00e5ff;
-            font-weight: bold;
+        .rating-action-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
-        .detail-btn {
-            display: block;
-            text-align: center;
-            background: #00e5ff;
-            color: #031412;
+        .interactive-stars-group {
+            display: flex;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--border-color);
+        }
+
+        .interactive-stars-group span {
+            transition: color 0.2s ease, transform 0.15s ease;
+        }
+
+        .interactive-stars-group span:hover {
+            transform: scale(1.25);
+        }
+
+        .interactive-stars-group span.lit-star {
+            color: var(--star-color);
+        }
+
+        .card-action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .details-action-btn {
+            flex: 1;
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
             padding: 10px;
             border-radius: 8px;
-            border: none;
+            font-weight: 600;
             cursor: pointer;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-top: auto;
-            box-shadow: 0 4px 10px rgba(0, 229, 255, 0.2);
+            transition: all 0.2s ease;
+            text-align: center;
         }
 
-        .detail-btn:hover {
-            background: #4dd0e1;
-            box-shadow: 0 6px 15px rgba(0, 229, 255, 0.4);
+        .details-action-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-primary);
         }
 
-        /* Modal Popup Styles */
-        .modal {
-            display: none;
+        /* ==========================================================================
+           6. MODAL POPUP FOR DEEP MOVIE INSPECTION & REVIEWS
+           ========================================================================== */
+        .modal-overlay-backdrop {
             position: fixed;
-            z-index: 2000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
 
-        .modal-content {
-            background: var(--card-bg);
-            border: 2px solid #00e5ff;
-            padding: 30px;
-            border-radius: 15px;
+        .modal-overlay-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content-box {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             width: 90%;
-            max-width: 500px;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 20px;
+            overflow-y: auto;
+            padding: 35px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .close-btn {
+        .modal-overlay-backdrop.active .modal-content-box {
+            transform: scale(1);
+        }
+
+        .modal-close-button {
             position: absolute;
-            top: 15px;
+            top: 20px;
             right: 20px;
-            font-size: 1.8rem;
-            color: #00e5ff;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
             cursor: pointer;
-            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s;
         }
 
-        .modal-title {
-            font-size: 1.5rem;
-            color: #00e5ff;
+        .modal-close-button:hover {
+            background-color: var(--danger-color);
+            border-color: var(--danger-color);
+        }
+
+        .modal-inner-flex {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .modal-movie-poster {
+            width: 200px;
+            height: 290px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-info-area {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .modal-info-area h2 {
+            font-size: 2rem;
+            color: var(--text-main);
             margin-bottom: 10px;
         }
 
-        .modal-details {
-            font-size: 0.95rem;
-            opacity: 0.9;
+        .modal-reviews-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+
+        .modal-reviews-section h3 {
+            font-size: 1.2rem;
+            color: var(--accent-color);
             margin-bottom: 15px;
         }
 
-        .modal-desc {
+        .review-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .review-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            resize: vertical;
+            min-height: 80px;
+            outline: none;
+        }
+
+        .review-textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        .submit-review-btn {
+            align-self: flex-end;
+            background-color: var(--accent-color);
+            color: var(--bg-primary);
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submit-review-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .reviews-display-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .review-item-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            border-radius: 8px;
             font-size: 0.9rem;
-            line-height: 1.6;
-            opacity: 0.8;
+            color: #cbd5e1;
         }
 
-        footer {
-            background-color: var(--header-bg);
-            color: var(--text-color);
+        /* ==========================================================================
+           7. FOOTER SECTION
+           ========================================================================== */
+        footer.site-footer {
             text-align: center;
-            padding: 25px;
-            border-top: 2px solid var(--border-color);
-            margin-top: 50px;
-            font-size: 0.95rem;
-            opacity: 0.8;
+            margin-top: auto;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background-color: var(--bg-secondary);
         }
 
-        @media(max-width: 768px) {
-            header {
+        /* Empty state styling */
+        .empty-state-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            background: var(--bg-secondary);
+            border-radius: 14px;
+            border: 1px dashed var(--border-color);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header.hero-section h1 {
+                font-size: 2.2rem;
+            }
+            .movie-grid-container {
+                grid-template-columns: 1fr;
+            }
+            nav.navbar {
                 flex-direction: column;
                 gap: 15px;
-                padding: 1rem;
-                text-align: center;
-            }
-            .search-container {
-                width: 100%;
-                justify-content: center;
-                flex-direction: column;
-            }
-            #searchBox {
-                width: 100%;
-            }
-            .nav-categories {
-                padding: 10px 1rem;
             }
         }
     </style>
 </head>
-<body data-theme="dark">
+<body>
 
-    <header>
-        <div class="logo-area">
-            <div class="logo">Huafsnet</div>
-            <div class="tagline">Your Ultimate Cinematic Database</div>
-        </div>
-        <div class="search-container">
-            <input type="text" id="searchBox" placeholder="Search Hollywood, Bollywood, K-Dramas..." onkeyup="filterMovies()">
-            <button class="theme-toggle" onclick="toggleTheme()">Theme</button>
-        </div>
-    </header>
+    <div class="app-container">
+        <!-- Navigation Header -->
+        <nav class="navbar">
+            <a href="#" class="brand-logo">
+                <span>🎬</span> CinePulse Hub
+            </a>
+            <div class="nav-stats">
+                <div>Total Movies: <span id="statTotalMovies">0</span></div>
+                <div>Favorites: <span id="statFavoritesCount">0</span></div>
+            </div>
+        </nav>
 
-    <div class="nav-categories">
-        <button class="cat-btn active" onclick="filterCategory('all', this)">All Masterpieces</button>
-        <button class="cat-btn" onclick="filterCategory('hollywood', this)">Hollywood</button>
-        <button class="cat-btn" onclick="filterCategory('bollywood', this)">Bollywood</button>
-        <button class="cat-btn" onclick="filterCategory('korean', this)">Korean / K-Dramas</button>
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <h1>Professional Movie Hub & Problem Solver</h1>
+            <p>Explore high-definition movie insights, read intricate plot lines, inspect main cast members, and contribute your personalized ratings & reviews.</p>
+        </header>
+
+        <!-- Search and Filters Section -->
+        <div class="controls-wrapper">
+            <div class="search-box-container">
+                <span class="search-icon-symbol">🔍</span>
+                <input type="text" id="mainSearchInput" class="search-input" placeholder="Search by title, genre, or actor name...">
+            </div>
+            <select id="genreFilterSelect" class="filter-select">
+                <option value="ALL">All Genres</option>
+                <option value="Biography">Biography</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Action">Action</option>
+                <option value="Drama">Drama</option>
+            </select>
+        </div>
+
+        <!-- Main Dynamic Grid -->
+        <div id="movieGridContainer" class="movie-grid-container"></div>
     </div>
 
-    <div class="container">
-        <div class="movies-grid" id="moviesGrid">
-            <!-- Rendered dynamically -->
+    <!-- Detailed Modal Overlay -->
+    <div id="movieModalOverlay" class="modal-overlay-backdrop">
+        <div class="modal-content-box">
+            <button id="modalCloseBtn" class="modal-close-button">&times;</button>
+            <div id="modalBodyContent"></div>
         </div>
     </div>
 
-    <!-- Modal Popup for Movie Details -->
-    <div id="movieModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle" class="modal-title"></h2>
-            <p id="modalMeta" class="modal-details"></p>
-            <p id="modalDesc" class="modal-desc"></p>
-        </div>
-    </div>
-
-    <footer>
-        &copy; 2026 Huafsnet Database. Built for true cinema lovers. All rights reserved.
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2026 CinePulse Problem Solver Hub. Engineered for absolute performance and seamless mobile-desktop harmony.</p>
     </footer>
 
+    <!-- Comprehensive JavaScript Application Engine -->
     <script>
-        // 100% stable Wikimedia/External hosted image database links with detailed info built-in
-        const movies = [
-            // Hollywood Hits
-            { 
-                title: "The Pursuit of Happyness", 
-                category: "hollywood", 
-                year: 2006, 
-                rating: 8.0, 
-                img: "https://upload.wikimedia.org/wikipedia/en/8/81/The_Pursuit_of_Happyness.png", 
-                desc: "A struggling salesman takes custody of his son as he's poised to begin a life-changing professional career.",
-                director: "Gabriele Muccino",
-                cast: "Will Smith, Thandie Newton, Jaden Smith"
+        /* ==========================================================================
+           COMPREHENSIVE MOVIE DATABASE ARRAY (10+ Rich Movies)
+           ========================================================================== */
+        const moviesDatabase = [
+            {
+                id: 1,
+                title: "The Social Network",
+                year: "2010",
+                genre: "Biography",
+                image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=500&auto=format&fit=crop",
+                plot: "As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea, and by his co-founder.",
+                cast: [
+                    { character: "Mark Zuckerberg", actor: "Jesse Eisenberg" },
+                    { character: "Eduardo Saverin", actor: "Andrew Garfield" },
+                    { character: "Sean Parker", actor: "Justin Timberlake" }
+                ],
+                userRating: 0,
+                isFavorite: false,
+                reviews: [
+                    "A masterclass in modern screenwriting and direction.",
+                    "The soundtrack by Trent Reznor and Atticus Ross is phenomenal."
+                ]
             },
-            { 
-                title: "Fight Club", 
-                category: "hollywood", 
-                year: 1999, 
-                rating: 8.8, 
-                img: "https://upload.wikimedia.org/wikipedia/en/f/fc/Fight_Club_poster.jpg", 
-                desc: "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
-                director: "David Fincher",
-                cast: "Brad Pitt, Edward Norton, Helena Bonham Carter"
+            {
+                id: 2,
+                title: "Inception",
+                year: "2010",
+                genre: "Sci-Fi",
+                image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=500&auto=format&fit=crop",
+                plot: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project.",
+                cast: [
+                    { character: "Dom Cobb", actor: "Leonardo DiCaprio" },
+                    { character: "Arthur", actor: "Joseph Gordon-Levitt" },
+                    { character: "Ariadne", actor: "Elliot Page" }
+                ],
+                userRating: 0,
+                isFavorite: false,
+                reviews: [
+                    "Mind-bending visual effects and an unforgettable ending.",
+                    "Christopher Nolan at his absolute peak."
+                ]
             },
-            { 
-                title: "Inception", 
-                category: "hollywood", 
-                year: 2010, 
-                rating: 8.8, 
-                img: "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg", 
-                desc: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea.",
-                director: "Christopher Nolan",
-                cast: "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page"
+            {
+                id: 3,
+                title: "Interstellar",
+                year: "2014",
+                genre: "Sci-Fi",
+                image: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=500&auto=format&fit=crop",
+                plot: "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
+                cast: [
+                    { character: "Cooper", actor: "Matthew McConaughey" },
+                    { character: "Brand", actor: "Anne Hathaway" },
+                    { character: "Murph", actor: "Jessica Chastain" }
+                ],
+                userRating: 0,
+                isFavorite: false,
+                reviews: [
+                    "An emotional cosmic journey that touches the soul.",
+                    "Visually breathtaking space cinematography."
+                ]
             },
-            { 
-                title: "Interstellar", 
-                category: "hollywood", 
-                year: 2014, 
-                rating: 8.7, 
-                img: "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg", 
-                desc: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
-                director: "Christopher Nolan",
-                cast: "Matthew McConaughey, Anne Hathaway, Jessica Chastain"
+            {
+                id: 4,
+                title: "Mr. Robot Chronicles",
+                year: "2015",
+                genre: "Thriller",
+                image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=500&auto=format&fit=crop",
+                plot: "Elliot, a young programmer who works as a cybersecurity engineer by day and as a vigilante hacker by night, is recruited by a mysterious anarchist leader to destroy the corporation he works for.",
+                cast: [
+                    { character: "Elliot Alderson", actor: "Rami Malek" },
+                    { character: "Mr. Robot", actor: "Christian Slater" },
+                    { character: "Angela Moss", actor: "Portia Doubleday" }
+                ],
+                userRating: 0,
+                isFavorite: false,
+                reviews: [
+                    "The most realistic portrayal of hacking in media.",
+                    "Rami Malek delivers an award-winning performance."
+                ]
             },
-            { 
-                title: "The Dark Knight", 
-                category: "hollywood", 
-                year: 2008, 
-                rating: 9.0, 
-                img: "https://upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight_poster.jpg", 
-                desc: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests.",
-                director: "Christopher Nolan",
-                cast: "Christian Bale, Heath Ledger, Aaron Eckhart"
+            {
+                id: 5,
+                title: "The Matrix",
+                year: "1999",
+                genre: "Action",
+                image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=500&auto=format&fit=crop",
+                plot: "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
+                cast: [
+                    { character: "Neo", actor: "Keanu Reeves" },
+                    { character: "Morpheus", actor: "Laurence Fishburne" },
+                    { character: "Trinity", actor: "Carrie-Anne Moss" }
+                ],
+                userRating: 0,
+                isFavorite: false,
+                reviews: [
+                    "Revolutionized action cinema forever.",
+                    "Philosophical depth wrapped in incredible cyberpunk aesthetics."
+                ]
             },
-
-            // Bollywood Masterpieces
-            { 
-                title: "3 Idiots", 
-                category: "bollywood", 
-                year: 2009, 
-                rating: 8.4, 
-                img: "https://upload.wikimedia.org/wikipedia/en/df/3_idiots_poster.jpg", 
-                desc: "Two friends search for their long lost companion. They revisit their college days and recall the memories of their friend who inspired them.",
-                director: "Rajkumar Hirani",
-                cast: "Aamir Khan, R. Madhavan, Sharman Joshi"
-            },
-            { 
-                title: "Dangal", 
-                category: "bollywood", 
-                year: 2016, 
-                rating: 8.4, 
-                img: "https://upload.wikimedia.org/wikipedia/en/9/99/Dangal_poster.jpg", 
-                desc: "Former wrestler Mahavir Singh Phogat trains his daughters to become world-class wrestlers against all societal odds.",
-                director: "Nitesh Tiwari",
-                cast: "Aamir Khan, Fatima Sana Shaikh, Sanya Malhotra"
-            },
-            { 
-                title: "Pathaan", 
-                category: "bollywood", 
-                year: 2023, 
-                rating: 6.0, 
-                img: "https://upload.wikimedia.org/wikipedia/en/c/c7/Pathaan_film_poster.jpg", 
-                desc: "An exiled RAW agent is assigned to take down a ruthless terrorist outfit planning a massive attack on India.",
-                director: "Siddharth Anand",
-                cast: "Shah Rukh Khan, Deepika Padukone, John Abraham"
-            },
-            { 
-                title: "Jawan", 
-                category: "bollywood", 
-                year: 2023, 
-                rating: 7.1, 
-                img: "https://upload.wikimedia.org/wikipedia/en/3/39/Jawan_film_poster.jpg", 
-                desc: "A high-octane action thriller outlines the emotional journey of a man who is set to rectify the wrongs in society.",
-                director: "Atlee",
-                cast: "Shah Rukh Khan, Nayanthara, Vijay Sethupathi"
-            },
-            { 
-                title: "Shershaah", 
-                category: "bollywood", 
-                year: 2021, 
-                rating: 8.4, 
-                img: "https://upload.wikimedia.org/wikipedia/en/1/1e/Shershaah_poster.jpg", 
-                desc: "The biographical story of Indian Army captain Vikram Batra, awarded the Param Vir Chakra posthumously.",
-                director: "Vishnu Varadhan",
-                cast: "Sidharth Malhotra, Kiara Advani"
-            },
-
-            // Korean Sensations
-            { 
-                title: "Squid Game", 
-                category: "korean", 
-                year: 2021, 
-                rating: 8.0, 
-                img: "https://upload.wikimedia.org/wikipedia/en/d/dd/Squid_Game_poster.jpg", 
-                desc: "Hundreds of cash-strapped players accept an invitation to compete in children's games for a tempting prize, with deadly stakes.",
-                director: "Hwang Dong-hyuk",
-                cast: "Lee Jung-jae, Park Hae-soo, Wi Ha-jun"
-            },
-            { 
-                title: "All of Us Are Dead", 
-                category: "korean", 
-                year: 2022, 
-                rating: 8.4, 
-                img: "https://upload.wikimedia.org/wikipedia/en/3/33/All_of_Us_Are_Dead_poster.jpg", 
-                desc: "A high school becomes ground zero for a zombie virus outbreak. Trapped students must fight their way out or turn into the infected.",
-                director: "Lee Joo-kyung, Kim Nam-su",
-                cast: "Park Ji-hu, Yoon Chan-young, Cho Yi-hyun"
-            },
-            { 
-                title: "Weak Hero Class 1", 
-                category: "korean", 
-                year: 2022, 
-                rating: 8.8, 
-                img: "https://upload.wikimedia.org/wikipedia/en/0/03/Weak_Hero_Class_1.jpg", 
-                desc: "A model student uses his intelligence to fight back against the relentless violence happening inside and outside of his school.",
-                director: "You Soo-min",
-                cast: "Park Ji-hoon, Choi Hyun-wook, Hong Kyung"
-            },
-            { 
-                title: "Train to Busan", 
-                category: "korean", 
-                year: 2016, 
-                rating: 7.6, 
-                img: "https://upload.wikimedia.org/wikipedia/en/d/da/Train_to_Busan_poster.jpg", 
-                desc: "While a zombie virus breaks out in South Korea, passengers struggle to survive on the train from Seoul to Busan.",
-                director: "Yeon Sang-ho",
-                cast: "Gong Yoo, Jung Yu-mi, Ma Dong-seok"
-            },
-            { 
-                title: "Parasite", 
-                category: "korean", 
-                year: 2019, 
-                rating: 8.5, 
-                img: "https://upload.wikimedia.org/wikipedia/en/5/53/Parasite_%282019_film%29.png", 
-                desc: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
-                director: "Bong Joon-ho",
-                cast: "Song Kang-ho, Lee Sun-kyun, Cho Yeo-jeong"
+            {
+                id: 6,
+                title: "Blade Runner 2049",
+                year: "2017",
+                genre: "Sci-Fi",
+                image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=500&auto=format&fit=crop",
+                plot: "Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard, who's been missing for thirty years.",
+                cast: [
+                    { character: "K", actor: "Ryan Gosling" },
+                    { character: "Rick Deckard", actor: "Harrison Ford" },
+                    { character: "Joi", actor: "Ana de Armas" }
+                ],
+                userRating: 0,
+                isFavorite: false,
+                reviews: [
+                    "Roger Deakins' cinematography is pure poetry.",
+                    "A worthy successor to the sci-fi masterpiece."
+                ]
             }
         ];
 
-        let currentCategory = 'all';
+        /* ==========================================================================
+           APPLICATION STATE & LOCALSTORAGE SYNC
+           ========================================================================== */
+        function loadSavedAppData() {
+            const savedData = localStorage.getItem('cinepulse_movies_db');
+            if (savedData) {
+                try {
+                    const parsed = JSON.parse(savedData);
+                    parsed.forEach(savedMovie => {
+                        const target = moviesDatabase.find(m => m.id === savedMovie.id);
+                        if (target) {
+                            target.userRating = savedMovie.userRating || 0;
+                            target.isFavorite = savedMovie.isFavorite || false;
+                            if (savedMovie.reviews) {
+                                target.reviews = savedMovie.reviews;
+                            }
+                        }
+                    });
+                } catch (e) {
+                    console.error("Error loading local storage data", e);
+                }
+            }
+        }
 
-        function displayMovies(items) {
-            const grid = document.getElementById('moviesGrid');
-            grid.innerHTML = '';
-            
-            if (items.length === 0) {
-                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; font-size: 1.2rem; opacity: 0.7;">No movies found matching your search.</p>';
+        function persistAppData() {
+            localStorage.setItem('cinepulse_movies_db', JSON.stringify(moviesDatabase));
+            updateGlobalStats();
+        }
+
+        function updateGlobalStats() {
+            document.getElementById('statTotalMovies').textContent = moviesDatabase.length;
+            const favCount = moviesDatabase.filter(m => m.isFavorite).length;
+            document.getElementById('statFavoritesCount').textContent = favCount;
+        }
+
+        /* ==========================================================================
+           DOM RENDERING ENGINE
+           ========================================================================== */
+        const gridContainer = document.getElementById('movieGridContainer');
+        const searchInputEl = document.getElementById('mainSearchInput');
+        const genreSelectEl = document.getElementById('genreFilterSelect');
+
+        function renderMovieGrid(moviesToRender) {
+            gridContainer.innerHTML = '';
+
+            if (moviesToRender.length === 0) {
+                gridContainer.innerHTML = `
+                    <div class="empty-state-message">
+                        <p>No matching cinematic titles found. Try adjusting your search or filter parameters!</p>
+                    </div>
+                `;
                 return;
             }
 
-            items.forEach((movie, index) => {
-                const card = document.createElement('div');
-                card.className = 'movie-card';
-                card.innerHTML = `
-                    <img src="${movie.img}" alt="${movie.title}" loading="lazy">
-                    <div class="movie-info">
-                        <div class="movie-title">${movie.title}</div>
-                        <div class="movie-meta">
-                            <span>${movie.year}</span>
-                            <span class="rating">★ ${movie.rating}</span>
+            moviesToRender.forEach(movie => {
+                const cardEl = document.createElement('div');
+                cardEl.className = 'movie-card';
+
+                // Build cast items string
+                let castListHtml = '';
+                movie.cast.forEach(c => {
+                    castListHtml += `<li><strong>${c.character}:</strong> ${c.actor}</li>`;
+                });
+
+                // Build stars string
+                let starsHtml = '';
+                for (let i = 1; i <= 5; i++) {
+                    const litClass = i <= movie.userRating ? 'lit-star' : '';
+                    starsHtml += `<span class="${litClass}" data-movie-id="${movie.id}" data-star-value="${i}">★</span>`;
+                }
+
+                const favClass = movie.isFavorite ? 'favorited' : '';
+                const favSymbol = movie.isFavorite ? '♥' : '♡';
+
+                cardEl.innerHTML = `
+                    <div class="card-header-flex">
+                        <img src="${movie.image}" alt="${movie.title}" class="movie-poster-img">
+                        <div class="movie-meta-info">
+                            <button class="favorite-btn ${favClass}" data-fav-id="${movie.id}" title="Toggle Favorite">${favSymbol}</button>
+                            <h2 class="movie-title-header">${movie.title}</h2>
+                            <span class="movie-year-badge">${movie.year}</span>
+                            <span class="movie-genre-badge">${movie.genre}</span>
                         </div>
-                        <button class="detail-btn" onclick="openModal(${index})">Movie Details</button>
+                    </div>
+                    <div class="card-body-section">
+                        <div>
+                            <div class="content-heading-label">Story Plot</div>
+                            <p class="movie-plot-text">${movie.plot}</p>
+                        </div>
+                        <div>
+                            <div class="content-heading-label">Main Cast</div>
+                            <ul class="movie-cast-list">
+                                ${castListHtml}
+                            </ul>
+                        </div>
+                        <div class="card-action-buttons">
+                            <button class="details-action-btn" data-detail-id="${movie.id}">Inspect Full Details & Reviews</button>
+                        </div>
+                        <div class="card-rating-footer">
+                            <span class="rating-action-label">Your Rating:</span>
+                            <div class="interactive-stars-group" data-rating-container-id="${movie.id}">
+                                ${starsHtml}
+                            </div>
+                        </div>
                     </div>
                 `;
-                grid.appendChild(card);
+
+                gridContainer.appendChild(cardEl);
+            });
+
+            attachCardEventListeners();
+        }
+
+        /* ==========================================================================
+           EVENT LISTENERS & INTERACTIVITY HANDLERS
+           ========================================================================== */
+        function attachCardEventListeners() {
+            // Star rating click handlers
+            const starGroups = document.querySelectorAll('.interactive-stars-group');
+            starGroups.forEach(group => {
+                const movieId = parseInt(group.getAttribute('data-rating-container-id'));
+                const starSpans = group.querySelectorAll('span');
+
+                starSpans.forEach(span => {
+                    span.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const ratingVal = parseInt(span.getAttribute('data-star-value'));
+                        const movieObj = moviesDatabase.find(m => m.id === movieId);
+                        if (movieObj) {
+                            movieObj.userRating = ratingVal;
+                            persistAppData();
+                            filterAndRenderEngine();
+                        }
+                    });
+                });
+            });
+
+            // Favorite toggle handlers
+            const favButtons = document.querySelectorAll('.favorite-btn');
+            favButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const movieId = parseInt(btn.getAttribute('data-fav-id'));
+                    const movieObj = moviesDatabase.find(m => m.id === movieId);
+                    if (movieObj) {
+                        movieObj.isFavorite = !movieObj.isFavorite;
+                        persistAppData();
+                        filterAndRenderEngine();
+                    }
+                });
+            });
+
+            // Detail button modal openers
+            const detailButtons = document.querySelectorAll('.details-action-btn');
+            detailButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const movieId = parseInt(btn.getAttribute('data-detail-id'));
+                    openMovieModal(movieId);
+                });
             });
         }
 
-        function openModal(index) {
-            const movie = movies[index];
-            document.getElementById('modalTitle').innerText = movie.title;
-            document.getElementById('modalMeta').innerHTML = `<strong>Released:</strong> ${movie.year} | <strong>Rating:</strong> ★ ${movie.rating}<br><strong>Director:</strong> ${movie.director}<br><strong>Cast:</strong> ${movie.cast}`;
-            document.getElementById('modalDesc').innerText = movie.desc;
-            document.getElementById('movieModal').style.display = 'flex';
+        // Filtering and search logic
+        function filterAndRenderEngine() {
+            const query = searchInputEl.value.toLowerCase().trim();
+            const selectedGenre = genreSelectEl.value;
+
+            const filtered = moviesDatabase.filter(movie => {
+                const matchesQuery = movie.title.toLowerCase().includes(query) ||
+                                     movie.genre.toLowerCase().includes(query) ||
+                                     movie.cast.some(c => c.actor.toLowerCase().includes(query) || c.character.toLowerCase().includes(query));
+                
+                const matchesGenre = selectedGenre === 'ALL' || movie.genre === selectedGenre;
+
+                return matchesQuery && matchesGenre;
+            });
+
+            renderMovieGrid(filtered);
         }
 
-        function closeModal() {
-            document.getElementById('movieModal').style.display = 'none';
-        }
+        searchInputEl.addEventListener('input', filterAndRenderEngine);
+        genreSelectEl.addEventListener('change', filterAndRenderEngine);
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('movieModal');
-            if (event.target === modal) {
-                closeModal();
+        /* ==========================================================================
+           MODAL POPUP CONTROLLER LOGIC
+           ========================================================================== */
+        const modalOverlay = document.getElementById('movieModalOverlay');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        const modalBodyContent = document.getElementById('modalBodyContent');
+
+        function openMovieModal(movieId) {
+            const movie = moviesDatabase.find(m => m.id === movieId);
+            if (!movie) return;
+
+            let castHtml = '';
+            movie.cast.forEach(c => {
+                castHtml += `<li><strong>${c.character}:</strong> ${c.actor}</li>`;
+            });
+
+            let reviewsHtml = '';
+            if (movie.reviews && movie.reviews.length > 0) {
+                movie.reviews.forEach(rev => {
+                    reviewsHtml += `<div class="review-item-card">💬 "${rev}"</div>`;
+                });
+            } else {
+                reviewsHtml = `<p style="color: var(--text-muted); font-size: 0.9rem;">No reviews yet. Be the first to share your thoughts!</p>`;
             }
-        }
 
-        function filterMovies() {
-            const query = document.getElementById('searchBox').value.toLowerCase();
-            const filtered = movies.filter(movie => {
-                const matchesSearch = movie.title.toLowerCase().includes(query);
-                const matchesCategory = currentCategory === 'all' || movie.category === currentCategory;
-                return matchesSearch && matchesCategory;
+            modalBodyContent.innerHTML = `
+                <div class="modal-inner-flex">
+                    <img src="${movie.image}" alt="${movie.title}" class="modal-movie-poster">
+                    <div class="modal-info-area">
+                        <h2>${movie.title} <span style="color: var(--accent-color); font-size: 1.2rem;">(${movie.year})</span></h2>
+                        <p style="color: var(--text-muted); margin-bottom: 12px;"><strong>Genre:</strong> ${movie.genre}</p>
+                        <div class="content-heading-label">Full Plot Overview</div>
+                        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px;">${movie.plot}</p>
+                        <div class="content-heading-label">Detailed Cast Members</div>
+                        <ul class="movie-cast-list" style="margin-bottom: 0;">
+                            ${castHtml}
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-reviews-section">
+                    <h3>Community Reviews & Feedback</h3>
+                    <div class="review-input-group">
+                        <textarea id="newReviewTextArea" class="review-textarea" placeholder="Write your review or notes about this movie..."></textarea>
+                        <button id="submitReviewBtn" class="submit-review-btn" data-movie-id="${movie.id}">Submit Review</button>
+                    </div>
+                    <div class="reviews-display-list" id="modalReviewsList">
+                        ${reviewsHtml}
+                    </div>
+                </div>
+            `;
+
+            modalOverlay.classList.add('active');
+
+            // Attach review submission handler inside modal
+            const submitRevBtn = document.getElementById('submitReviewBtn');
+            submitRevBtn.addEventListener('click', () => {
+                const textarea = document.getElementById('newReviewTextArea');
+                const reviewText = textarea.value.trim();
+                if (reviewText) {
+                    movie.reviews.push(reviewText);
+                    persistAppData();
+                    textarea.value = '';
+                    openMovieModal(movie.id); // Refresh modal view
+                    filterAndRenderEngine();
+                }
             });
-            displayMovies(filtered);
         }
 
-        function filterCategory(category, btn) {
-            currentCategory = category;
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterMovies();
-        }
+        modalCloseBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+        });
 
-        function toggleTheme() {
-            const body = document.body;
-            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-        }
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+        });
 
-        displayMovies(movies);
+        /* ==========================================================================
+           INITIALIZATION ROUTINE
+           ========================================================================== */
+        window.addEventListener('DOMContentLoaded', () => {
+            loadSavedAppData();
+            updateGlobalStats();
+            renderMovieGrid(moviesDatabase);
+        });
     </script>
 </body>
 </html>
