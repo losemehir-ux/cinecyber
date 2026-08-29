@@ -3,547 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineCyber - 100 Ultimate Masterpieces</title>
+    <title>huzfasnet - Movie Hub</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
+
         body {
             background-color: #0b0b0b;
             color: #f1f1f1;
+            padding: 20px;
             display: flex;
             flex-direction: column;
+            align-items: center;
             min-height: 100vh;
         }
-        header {
-            background-color: #141414;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #222;
-            flex-wrap: wrap;
-            gap: 15px;
+
+        .container {
+            width: 100%;
+            max-width: 480px;
         }
+
+        /* Logo */
         .logo {
-            background-color: #f5c518;
+            background-color: #f3cc00;
             color: #000;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 1.2rem;
+            font-weight: 900;
+            font-size: 22px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
         }
+
+        /* Search Box */
         .search-box {
-            background-color: #222;
+            width: 100%;
+            background-color: #1a1a1a;
             border: 1px solid #333;
-            border-radius: 4px;
-            padding: 8px 15px;
-            width: 300px;
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .search-box:focus {
-            border-color: #f5c518;
-        }
-        .main-container {
-            padding: 30px;
-            flex: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            border-left: 4px solid #f5c518;
-            padding-left: 10px;
-        }
-        .section-header h2 {
-            font-size: 1.5rem;
-            color: #f5c518;
-        }
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-        .movie-card {
-            background-color: #181818;
             border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #222;
+            padding: 12px 15px;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            margin-bottom: 15px;
         }
-        .movie-card:hover {
-            transform: translateY(-5px);
-            border-color: #444;
+
+        .search-box::placeholder {
+            color: #888;
         }
-        .poster-box {
-            width: 100%;
-            height: 300px;
-            background-color: #222;
-            overflow: hidden;
-        }
-        .poster-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .movie-info {
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            justify-content: space-between;
-        }
-        .rating-row {
+
+        /* Dark Mode Button */
+        .theme-btn {
+            background-color: #1a1a1a;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
             display: flex;
             align-items: center;
-            font-size: 0.85rem;
-            color: #ccc;
-            margin-bottom: 5px;
+            gap: 6px;
+            margin-bottom: 25px;
+            font-weight: 500;
         }
-        .star {
-            color: #f5c518;
-            margin-right: 5px;
+
+        /* Category Filter Buttons */
+        .categories-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            padding-bottom: 5px;
         }
-        .movie-title {
-            color: #fff;
+
+        .cat-btn {
+            background-color: #1a1a1a;
+            color: #aaa;
+            border: 1px solid #333;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
             font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-            display: block;
-            overflow: hidden;
-            text-overflow: ellipsis;
             white-space: nowrap;
         }
-        .card-btn {
+
+        .cat-btn.active, .cat-btn:hover {
+            background-color: #f3cc00;
+            color: #000;
+            border-color: #f3cc00;
+        }
+
+        /* Section Heading */
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #f3cc00;
+            border-left: 4px solid #f3cc00;
+            padding-left: 10px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Movie Card Design (Exact as screenshot) */
+        .movie-card {
+            background-color: #161616;
+            border: 1px solid #262626;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .movie-info {
+            padding: 15px 15px 5px 15px;
+        }
+
+        .movie-rating {
+            color: #f3cc00;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .movie-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .details-btn {
+            width: calc(100% - 30px);
+            margin: 0 15px;
             background-color: #222;
             color: #fff;
             border: none;
-            padding: 8px;
-            border-radius: 4px;
-            cursor: pointer;
+            padding: 12px;
+            border-radius: 8px;
             font-weight: 600;
-            width: 100%;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
             transition: background 0.2s;
         }
-        .card-btn:hover {
-            background-color: #f5c518;
-            color: #000;
-        }
-        
-        /* Modal Popup Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #181818;
-            padding: 25px;
-            border-radius: 8px;
-            max-width: 600px;
-            width: 90%;
-            border: 1px solid #333;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .close-btn {
-            position: absolute;
-            right: 15px;
-            top: 10px;
-            font-size: 1.5rem;
-            color: #aaa;
-            cursor: pointer;
-        }
-        .close-btn:hover {
-            color: #fff;
-        }
-        .modal-body {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .modal-body img {
-            width: 150px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 6px;
-        }
-        .modal-details {
-            flex: 1;
-        }
-        .modal-details h3 {
-            color: #f5c518;
-            margin-bottom: 10px;
-        }
-        .modal-details p {
-            color: #ccc;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            margin-bottom: 8px;
-        }
 
-        .rating-section {
-            background-color: #141414;
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 50px;
-            border: 1px solid #222;
-            text-align: center;
+        .details-btn:hover {
+            background-color: #333;
         }
-        .rating-section h3 {
-            color: #f5c518;
-            margin-bottom: 15px;
-        }
-        .stars-container {
-            font-size: 2rem;
-            cursor: pointer;
-            color: #555;
-            margin-bottom: 15px;
-        }
-        .stars-container .selected {
-            color: #f5c518;
-        }
-        .rating-section textarea {
-            width: 100%;
-            max-width: 600px;
-            height: 100px;
-            padding: 10px;
-            border-radius: 4px;
-            border: none;
-            background-color: #222;
-            color: #fff;
-            margin-bottom: 15px;
-            resize: none;
-        }
-        .submit-rating-btn {
-            background-color: #f5c518;
-            color: #000;
-            border: none;
-            padding: 10px 25px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .submit-rating-btn:hover {
-            background-color: #e5b510;
-        }
-        footer {
-            background-color: #141414;
-            text-align: center;
-            padding: 20px;
-            color: #777;
-            font-size: 0.9rem;
-            border-top: 1px solid #222;
-            margin-top: auto;
-      body.light-theme {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
-}
-
-body.light-theme header {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-}
-
-body.light-theme .card,
-body.light-theme .modal-content {
-  background-color: #ffffff !important;
-  color: #0f172a !important;
-  border-color: #e2e8f0 !important;
-}
-
-body.light-theme h1, 
-body.light-theme h2, 
-body.light-theme h3, 
-body.light-theme .movie-title,
-body.light-theme p,
-body.light-theme span {
-  color: #0f172a !important;
-}
-
-body.light-theme .search-box {
-  background-color: #f1f5f9 !important;
-  color: #0f172a !important;
-  border-color: #cbd5e1 !important;
-}
-            .theme-btn {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-    transition: all 0.3s ease;
-}
-
-.theme-btn:hover {
-    background: linear-gradient(135deg, #2563eb, #1e40af);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
-}
-
-.theme-btn:active {
-    transform: translateY(0);
-        }
-
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">huzafnet</div>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">huzfasnet</div>
+
+        <!-- Search Input -->
         <input type="text" id="searchInput" class="search-box" placeholder="Search movies or series..." onkeyup="filterMovies()">
+
+        <!-- Dark Mode Button -->
         <button id="themeToggleBtn" onclick="toggleTheme()" class="theme-btn">🌙 Dark Mode</button>
-  
-    </header>
 
-    <div class="main-container">
-        <div class="section-header">
-            <h2>Curated Masterpieces</h2>
-        </div>
-        
-        <div class="movie-grid" id="movieGrid">
-            <!-- Dynamic Cards -->
+        <!-- Categories -->
+        <div class="categories-nav">
+            <button class="cat-btn active" onclick="filterCategory('all')">🔥 All</button>
+            <button class="cat-btn" onclick="filterCategory('hollywood')">🎬 Hollywood</button>
+            <button class="cat-btn" onclick="filterCategory('bollywood')">🍿 Bollywood</button>
+            <button class="cat-btn" onclick="filterCategory('cyber')">💻 Cyber/Sci-Fi</button>
         </div>
 
-        <div class="rating-section">
-            <h3>Your feedback matters to us—help us improve with your rating!</h3>
-            <div class="stars-container" id="starContainer">
-                <span data-value="1">★</span>
-                <span data-value="2">★</span>
-                <span data-value="3">★</span>
-                <span data-value="4">★</span>
-                <span data-value="5">★</span>
-            </div>
-            <textarea id="feedbackText" placeholder="Write your feedback here..."></textarea>
-            <br>
-            <button class="submit-rating-btn" onclick="submitRating()">Submit Rating</button>
-        </div>
-    </div>
+        <!-- Section Title -->
+        <div class="section-title">Curated Masterpieces</div>
 
-    <!-- Movie Details Modal -->
-    <div class="modal" id="movieModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div class="modal-body">
-                <img id="modalCharImg" src="" alt="Main Character">
-                <div class="modal-details">
-                    <h3 id="modalTitle"></h3>
-                    <p><strong>Rating:</strong> <span id="modalRating"></span>/10</p>
-                    <p><strong>Main Character:</strong> <span id="modalCharacter"></span></p>
-                    <p id="modalDesc"></p>
+        <!-- Movie List Grid -->
+        <div id="movieGrid">
+            <!-- 1. The Matrix -->
+            <div class="movie-card" data-category="hollywood cyber" data-title="the matrix">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" class="movie-poster" alt="The Matrix">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.7/10</div>
+                    <div class="movie-name">The Matrix</div>
                 </div>
+                <button class="details-btn" onclick="alert('The Matrix: A computer hacker learns the true nature of his reality.')">Details</button>
+            </div>
+
+            <!-- 2. Interstellar -->
+            <div class="movie-card" data-category="hollywood cyber" data-title="interstellar">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" class="movie-poster" alt="Interstellar">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.6/10</div>
+                    <div class="movie-name">Interstellar</div>
+                </div>
+                <button class="details-btn" onclick="alert('Interstellar: A team of explorers travel through a wormhole in space.')">Details</button>
+            </div>
+
+            <!-- 3. 3 Idiots -->
+            <div class="movie-card" data-category="bollywood" data-title="3 idiots">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80" class="movie-poster" alt="3 Idiots">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.4/10</div>
+                    <div class="movie-name">3 Idiots</div>
+                </div>
+                <button class="details-btn" onclick="alert('3 Idiots: Two friends search for their long lost college companion.')">Details</button>
+            </div>
+
+            <!-- 4. Pathaan -->
+            <div class="movie-card" data-category="bollywood" data-title="pathaan">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=600&q=80" class="movie-poster" alt="Pathaan">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 7.2/10</div>
+                    <div class="movie-name">Pathaan</div>
+                </div>
+                <button class="details-btn" onclick="alert('Pathaan: An exiled RAW agent takes down a ruthless terrorist outfit.')">Details</button>
+            </div>
+
+            <!-- 5. Mr. Robot -->
+            <div class="movie-card" data-category="cyber" data-title="mr robot">
+                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80" class="movie-poster" alt="Mr. Robot">
+                <div class="movie-info">
+                    <div class="movie-rating">★ 8.5/10</div>
+                    <div class="movie-name">Mr. Robot Chronicles</div>
+                </div>
+                <button class="details-btn" onclick="alert('Mr. Robot Chronicles: Cyber security engineer by day and vigilante hacker by night.')">Details</button>
             </div>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2026 CineCyber Database. Developed by Huzaifa.</p>
-    </footer>
 
     <script>
-        const moviesData = [
-            { id: 1, title: "The Matrix", rating: "8.7", poster: "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg", character: "Neo (Keanu Reeves)", charImg: "https://image.tmdb.org/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg", desc: "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers." },
-            { id: 2, title: "Interstellar", rating: "8.7", poster: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg", character: "Joseph Cooper (Matthew McConaughey)", charImg: "https://image.tmdb.org/t/p/w500/wmdGdbNCwWbW4D01W3YV3ZkX6bK.jpg", desc: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival." },
-            { id: 3, title: "Inception", rating: "8.8", poster: "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg", character: "Dom Cobb (Leonardo DiCaprio)", charImg: "https://image.tmdb.org/t/p/w500/wo2hJpn04vbtmh0B9utCFdsQhxM.jpg", desc: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea." },
-            { id: 4, title: "Breaking Bad", rating: "9.5", poster: "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg", character: "Walter White (Bryan Cranston)", charImg: "https://image.tmdb.org/t/p/w500/7JiedWbGEHA6eZ3A7bA562B28h9.jpg", desc: "A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student." },
-            { id: 5, title: "Fight Club", rating: "8.8", poster: "https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg", character: "Tyler Durden (Brad Pitt)", charImg: "https://image.tmdb.org/t/p/w500/cckcYNYLHJjMWYDZVXlX5pQJdFR.jpg", desc: "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into something much more." },
-            { id: 6, title: "The Dark Knight", rating: "9.0", poster: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg", character: "Batman / Bruce Wayne (Christian Bale)", charImg: "https://image.tmdb.org/t/p/w500/qYNmzIOrcmR8A0WlE7wYJ5hNkhD.jpg", desc: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological tests." },
-            { id: 7, title: "Pulp Fiction", rating: "8.9", poster: "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg", character: "Vincent Vega (John Travolta)", charImg: "https://image.tmdb.org/t/p/w500/fiodx81qjYn9XjRk0l72K3yXk5z.jpg", desc: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption." },
-            { id: 8, title: "Gladiator", rating: "8.5", poster: "https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg", character: "Maximus (Russell Crowe)", charImg: "https://image.tmdb.org/t/p/w500/cQvc5q5u40qQx4cZ6v1j3R6Y9yL.jpg", desc: "A former Roman general sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery." },
-            { id: 9, title: "Blade Runner 2049", rating: "8.0", poster: "https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg", character: "K (Ryan Gosling)", charImg: "https://image.tmdb.org/t/p/w500/lyUyRH8JqA0L0zB1oQ0FjJ4h4q9.jpg", desc: "Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard." },
-            { id: 10, title: "Spider-Man: Into the Spider-Verse", rating: "8.4", poster: "https://image.tmdb.org/t/p/w500/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg", character: "Miles Morales", charImg: "https://image.tmdb.org/t/p/w500/q2g1gN4J1Vj9cZqjY3hW7u5X7Vb.jpg", desc: "Teenager Miles Morales becomes the Spider-Man of his universe, and must join with five spider-powered counterparts from other dimensions." },
-            { id: 11, title: "Avatar", rating: "7.9", poster: "https://image.tmdb.org/t/p/w500/kyeShkV8swvHmiw8rK3bZc3xP4z.jpg", character: "Jake Sully (Sam Worthington)", charImg: "https://image.tmdb.org/t/p/w500/7vXjXqgE9y8K42X377K7hXm8x2z.jpg", desc: "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world." },
-            { id: 12, title: "Avengers: Endgame", rating: "8.4", poster: "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg", character: "Iron Man / Tony Stark (Robert Downey Jr.)", charImg: "https://image.tmdb.org/t/p/w500/5qHNjhtjMD4YWH3UP0rm4tKwxCL.jpg", desc: "After the devastating events of Infinity War, the universe is in ruins. The Avengers assemble once more to reverse Thanos' actions." },
-            { id: 13, title: "Joker", rating: "8.4", poster: "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg", character: "Arthur Fleck (Joaquin Phoenix)", charImg: "https://image.tmdb.org/t/p/w500/zslCZw9zC5iFqQZt5FkE609dJ.jpg", desc: "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society, embarking on a downward spiral." },
-            { id: 14, title: "Parasite", rating: "8.5", poster: "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg", character: "Kim Ki-taek (Song Kang-ho)", charImg: "https://image.tmdb.org/t/p/w500/t8K7e1VfB6jW21B8pM4yN6V7J2x.jpg", desc: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan." },
-            { id: 15, title: "The Lord of the Rings: The Fellowship of the Ring", rating: "8.8", poster: "https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg", character: "Frodo Baggins (Elijah Wood)", charImg: "https://image.tmdb.org/t/p/w500/6Wv1g8lGjW21B8pM4yN6V7J2x.jpg", desc: "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth." }
-        ];
-
-        let selectedRating = 0;
-        const stars = document.querySelectorAll('#starContainer span');
-
-        stars.forEach(star => {
-            star.addEventListener('click', function() {
-                selectedRating = this.getAttribute('data-value');
-                stars.forEach(s => {
-                    if(s.getAttribute('data-value') <= selectedRating) {
-                        s.classList.add('selected');
-                    } else {
-                        s.classList.remove('selected');
-                    }
-                });
-            });
-        });
-
-        // Google Sheet Web App URL
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbffmE_rXta78txzMDw7GLKbaXfeZa0aG08lJw0Ba2CPJKqludcLjucfULCn7DZ5kt/exec';
-
-        function submitRating() {
-            const feedback = document.getElementById('feedbackText').value;
-            const submitBtn = document.querySelector('.submit-rating-btn');
-
-            if (selectedRating === 0) {
-                alert("Please select at least 1 star before submitting!");
-                return;
+        // Dark & Light Mode Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggleBtn');
+            
+            if (body.style.backgroundColor === 'rgb(248, 250, 252)') {
+                body.style.backgroundColor = '#0b0b0b';
+                body.style.color = '#f1f1f1';
+                localStorage.setItem('userTheme', 'dark');
+                if (btn) btn.innerHTML = '🌙 Dark Mode';
+            } else {
+                body.style.backgroundColor = '#f8fafc';
+                body.style.color = '#0f172a';
+                localStorage.setItem('userTheme', 'light');
+                if (btn) btn.innerHTML = '☀️ Light Mode';
             }
+        }
 
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Submitting...";
+        // Category Filter
+        function filterCategory(category) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
 
-            const data = {
-                rating: selectedRating,
-                feedback: feedback
-            };
-
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(() => {
-                alert(`Thank you for rating our website ${selectedRating} stars! ❤️`);
-                selectedRating = 0;
-                document.getElementById('feedbackText').value = "";
-                stars.forEach(s => s.classList.remove('selected'));
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Submit Rating";
-            })
-            .catch(error => {
-                console.error('Error!', error);
-                alert("Something went wrong. Please try again.");
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Submit Rating";
+            let cards = document.querySelectorAll('.movie-card');
+            cards.forEach(card => {
+                let catAttr = card.getAttribute('data-category');
+                if (category === 'all' || catAttr.includes(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
             });
         }
 
-        // Render Movie Grid Function
-        function displayMovies(movies) {
-            const grid = document.getElementById('movieGrid');
-            grid.innerHTML = "";
-            if (movies.length === 0) {
-                grid.innerHTML = "<p style='color: #777; grid-column: 1/-1; text-align: center;'>No movies found!</p>";
-                return;
-            }
-            movies.forEach(movie => {
-                const card = document.createElement('div');
-                card.className = 'movie-card';
-                card.innerHTML = `
-                    <div class="poster-box">
-                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                    </div>
-                    <div class="movie-info">
-                        <div class="rating-row">
-                            <span class="star">★</span>
-                            <span><strong>${movie.rating}</strong>/10</span>
-                        </div>
-                        <span class="movie-title">${movie.title}</span>
-                        <button class="card-btn" onclick="openModal(${movie.id})">Details</button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // Search Filter Function
+        // Search Filter
         function filterMovies() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = moviesData.filter(movie => 
-                movie.title.toLowerCase().includes(query) || 
-                movie.character.toLowerCase().includes(query)
-            );
-            displayMovies(filtered);
+            let query = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.querySelectorAll('.movie-card');
+
+            cards.forEach(card => {
+                let title = card.getAttribute('data-title');
+                if (title.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
-
-        // Initial render
-        displayMovies(moviesData);
-
-        // Modal Functions
-        function openModal(id) {
-            const movie = moviesData.find(m => m.id === id);
-            if (movie) {
-                document.getElementById('modalTitle').innerText = movie.title;
-                document.getElementById('modalRating').innerText = movie.rating;
-                document.getElementById('modalCharacter').innerText = movie.character;
-                document.getElementById('modalDesc').innerText = movie.desc;
-                document.getElementById('modalCharImg').src = movie.charImg;
-                document.getElementById('movieModal').style.display = 'flex';
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('movieModal').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('movieModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        }
-        // Theme Switcher Function
-function toggleTheme() {
-  const body = document.body;
-  const btn = document.getElementById('themeToggleBtn');
-  
-  // Check current background color
-  if (body.style.backgroundColor === 'rgb(248, 250, 252)') {
-    // Switch to Dark
-    body.style.backgroundColor = '#0b0b0b';
-    body.style.color = '#f1f1f1';
-    localStorage.setItem('userTheme', 'dark');
-    if (btn) btn.innerHTML = '🌙 Dark Mode';
-  } else {
-    // Switch to Light White
-    body.style.backgroundColor = '#f8fafc';
-    body.style.color = '#0f172a';
-    localStorage.setItem('userTheme', 'light');
-    if (btn) btn.innerHTML = '☀️ Light Mode';
-  }
-}
-
-// Page load par check karne ke liye
-window.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('userTheme');
-  const btn = document.getElementById('themeToggleBtn');
-  
-  if (savedTheme === 'light') {
-    document.body.style.backgroundColor = '#f8fafc';
-    document.body.style.color = '#0f172a';
-    if (btn) btn.innerHTML = '☀️ Light Mode';
-  }
-});
     </script>
 </body>
-</html>
+    </html>
