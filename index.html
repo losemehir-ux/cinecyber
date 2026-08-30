@@ -28,6 +28,7 @@
             flex-wrap: wrap;
             gap: 15px;
         }
+            
         .logo {
             background-color: #f5c518;
             color: #000;
@@ -256,7 +257,31 @@
             font-size: 0.9rem;
             border-top: 1px solid #222;
             margin-top: auto;
-        }
+            .theme-toggle-btn {
+    background: linear-gradient(135deg, #00bcd4, #00838f);
+    color: #051614;
+    border: none;
+    padding: 12px 24px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 188, 212, 0.6);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.95);
+}
+        
     </style>
 </head>
 <body>
@@ -264,6 +289,9 @@
     <header>
         <div class="logo">huzafnet</div>
         <input type="text" id="searchInput" class="search-box" placeholder="Search movies or series..." onkeyup="filterMovies()">
+        <button class="theme-toggle-btn" id="themeBtn" onclick="toggleTheme()">
+    <span id="themeIcon">☀️</span> <span id="themeText">Light Mode</span>
+</button>
     </header>
 
     <div class="main-container">
@@ -452,6 +480,21 @@
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
+        }
+        function toggleTheme() {
+    const body = document.body;
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.setAttribute('data-theme', 'light');
+        themeIcon.innerText = '🌙';
+        themeText.innerText = 'Dark Mode';
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.innerText = '☀️';
+        themeText.innerText = 'Light Mode';
+    }
         }
     </script>
 </body>
