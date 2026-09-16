@@ -12,8 +12,7 @@
             theme: {
                 extend: {
                     colors: {
-                        darkbg: '#050c09',
-                        cardbg: '#0f1713',
+                        boxbg: '#161026',        /* Rich Purple Box Color */
                         neoncyan: '#00f2fe',
                         neongreen: '#00ff87',
                     }
@@ -23,25 +22,26 @@
     </script>
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Smooth Animated Background Styles -->
+    <!-- Smooth, Lag-Free & Brighter Animated Background -->
     <style>
-        @keyframes gradientAnimation {
+        @keyframes smoothGlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        .animated-bg {
-            background: linear-gradient(135deg, #030806, #061a12, #00221d, #021217);
-            background-size: 300% 300%;
-            animation: gradientAnimation 12s ease infinite;
+        body {
+            background: linear-gradient(135s ease, #06241b, #09382b, #00363a, #0b1d3a);
+            background: linear-gradient(135deg, #072b20, #0c4232, #023840, #102542);
+            background-size: 250% 250%;
+            animation: smoothGlow 15s ease infinite;
         }
     </style>
 </head>
-<body class="animated-bg text-gray-200 min-h-screen flex flex-col justify-between font-sans selection:bg-neoncyan selection:text-black">
+<body class="text-gray-100 min-h-screen flex flex-col justify-between font-sans selection:bg-neoncyan selection:text-black">
 
     <div>
         <!-- Header / Navbar -->
-        <header class="border-b border-gray-800/80 bg-cardbg/70 backdrop-blur-md sticky top-0 z-50">
+        <header class="border-b border-purple-900/40 bg-[#0d0918]/80 backdrop-blur-md sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-terminal text-neoncyan text-2xl animate-pulse"></i>
@@ -59,14 +59,14 @@
             
             <!-- Hero Section -->
             <div class="text-center mb-12">
-                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-neoncyan/10 text-neoncyan border border-neoncyan/30 uppercase tracking-widest mb-4 inline-block">The Ultimate 2026 AI Prompt Library</span>
+                <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-neoncyan/10 text-neoncyan border border-neoncyan/30 uppercase tracking-widest mb-4 inline-block shadow-md">The Ultimate 2026 AI Prompt Library</span>
                 <h1 class="text-3xl md:text-6xl font-extrabold mb-4 tracking-tight">Discover & Share Pro <span class="text-neoncyan">AI Prompts</span></h1>
-                <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">Welcome to HuzafsTech! Cutting-edge prompts for Image Editing, Supercars, Coding, 3D Avatars, and Viral Content creation.</p>
+                <p class="text-gray-300 max-w-2xl mx-auto text-sm md:text-base">Welcome to HuzafsTech! Cutting-edge prompts for Image Editing, Supercars, Coding, 3D Avatars, and Viral Content creation.</p>
                 
                 <!-- Search & Filter Bar -->
                 <div class="mt-8 max-w-xl mx-auto relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-gray-400"></i>
-                    <input type="text" id="searchInput" onkeyup="filterPrompts()" placeholder="Search any prompt (e.g. car, photo, coding, avatar)..." class="w-full bg-cardbg/80 border border-gray-800 rounded-2xl pl-12 pr-4 py-3.5 text-sm focus:outline-none focus:border-neoncyan transition text-gray-200 shadow-xl backdrop-blur-sm">
+                    <input type="text" id="searchInput" onkeyup="filterPrompts()" placeholder="Search any prompt (e.g. car, photo, coding, avatar)..." class="w-full bg-[#120d20] border border-purple-900/60 rounded-2xl pl-12 pr-4 py-3.5 text-sm focus:outline-none focus:border-neoncyan transition text-gray-100 shadow-xl backdrop-blur-sm">
                 </div>
             </div>
 
@@ -78,13 +78,13 @@
     </div>
 
     <!-- Footer with Copyright -->
-    <footer class="border-t border-gray-800/80 bg-cardbg/90 backdrop-blur-md py-6 mt-16 text-center text-xs text-gray-400">
+    <footer class="border-t border-purple-900/40 bg-[#0d0918]/90 backdrop-blur-md py-6 mt-16 text-center text-xs text-gray-400">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0">
             <div class="flex items-center space-x-2">
                 <i class="fa-solid fa-code text-neoncyan"></i>
                 <span class="font-bold text-gray-200">HuzafsTech AI Hub</span>
             </div>
-            <p>© 2026 HuzafsTech. All rights reserved. Built for Creators & Coders.</p>
+            <p>© 2026 HuzafsTech. All rights reserved. Built by Huzaifa.</p>
             <div class="flex space-x-4 text-neoncyan">
                 <span class="hover:text-neongreen transition cursor-pointer"><i class="fa-brands fa-github"></i></span>
                 <span class="hover:text-neongreen transition cursor-pointer"><i class="fa-brands fa-twitter"></i></span>
@@ -95,23 +95,23 @@
 
     <!-- Add Prompt Modal -->
     <div id="promptModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden justify-center items-center z-50 px-4">
-        <div class="bg-cardbg border border-gray-800 w-full max-w-lg rounded-2xl p-6 shadow-2xl relative">
+        <div class="bg-[#140e24] border border-purple-800/80 w-full max-w-lg rounded-2xl p-6 shadow-2xl relative">
             <h2 class="text-xl font-bold mb-4 text-neoncyan flex items-center space-x-2">
                 <i class="fa-solid fa-circle-plus"></i>
                 <span>Add New Prompt</span>
             </h2>
             <form id="addForm" onsubmit="addPrompt(event)">
                 <div class="mb-4">
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-semibold">Title</label>
-                    <input type="text" id="newTitle" required class="w-full bg-darkbg border border-gray-800 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Ultra Realistic Cyberpunk Portrait">
+                    <label class="block text-xs uppercase tracking-wider text-gray-300 mb-2 font-semibold">Title</label>
+                    <input type="text" id="newTitle" required class="w-full bg-[#0d0918] border border-purple-900/60 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-100" placeholder="e.g. Ultra Realistic Cyberpunk Portrait">
                 </div>
                 <div class="mb-4">
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-semibold">Category</label>
-                    <input type="text" id="newCategory" required class="w-full bg-darkbg border border-gray-800 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Image Editing">
+                    <label class="block text-xs uppercase tracking-wider text-gray-300 mb-2 font-semibold">Category</label>
+                    <input type="text" id="newCategory" required class="w-full bg-[#0d0918] border border-purple-900/60 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-100" placeholder="e.g. Image Editing">
                 </div>
                 <div class="mb-4">
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-semibold">Prompt Text</label>
-                    <textarea id="newText" rows="4" required class="w-full bg-darkbg border border-gray-800 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="Write your high-converting prompt here..."></textarea>
+                    <label class="block text-xs uppercase tracking-wider text-gray-300 mb-2 font-semibold">Prompt Text</label>
+                    <textarea id="newText" rows="4" required class="w-full bg-[#0d0918] border border-purple-900/60 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-100" placeholder="Write your high-converting prompt here..."></textarea>
                 </div>
                 <div class="flex justify-end space-x-3">
                     <button type="button" onclick="closeModal()" class="px-4 py-2.5 rounded-xl text-sm bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Cancel</button>
@@ -123,7 +123,7 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Massive Collection of Pro & Trending Prompts
+        // Pro & Trending Prompts Collection
         let prompts = [
             {
                 id: 1,
@@ -193,22 +193,22 @@
             grid.innerHTML = '';
 
             if(data.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-16 bg-cardbg/50 rounded-2xl border border-gray-800"><i class="fa-regular fa-face-frown text-4xl text-gray-500 mb-3"></i><p class="text-gray-400">No prompts found matching your search.</p></div>`;
+                grid.innerHTML = `<div class="col-span-full text-center py-16 bg-boxbg rounded-2xl border border-purple-900/40"><i class="fa-regular fa-face-frown text-4xl text-gray-400 mb-3"></i><p class="text-gray-300">No prompts found matching your search.</p></div>`;
                 return;
             }
 
             data.forEach(item => {
                 grid.innerHTML += `
-                    <div class="bg-cardbg/90 border border-gray-800/80 rounded-2xl p-5 flex flex-col justify-between hover:border-neoncyan/60 transition duration-300 group shadow-xl backdrop-blur-sm">
+                    <div class="bg-boxbg border border-purple-900/60 rounded-2xl p-5 flex flex-col justify-between hover:border-neoncyan/70 transition duration-300 group shadow-xl">
                         <div>
                             <div class="flex justify-between items-center mb-3">
                                 <span class="text-xs font-semibold px-3 py-1 rounded-full bg-neoncyan/10 text-neoncyan border border-neoncyan/20">${item.category}</span>
-                                <i class="fa-regular fa-bookmark text-gray-500 group-hover:text-neongreen transition cursor-pointer"></i>
+                                <i class="fa-regular fa-bookmark text-gray-400 group-hover:text-neongreen transition cursor-pointer"></i>
                             </div>
                             <h3 class="text-lg font-bold mb-2 text-gray-100 group-hover:text-neoncyan transition">${item.title}</h3>
-                            <p class="text-gray-400 text-xs md:text-sm mb-4 bg-darkbg/70 p-3.5 rounded-xl border border-gray-800/50 font-mono line-clamp-3 leading-relaxed">${item.text}</p>
+                            <p class="text-gray-300 text-xs md:text-sm mb-4 bg-[#0e0a1c] p-3.5 rounded-xl border border-purple-950 font-mono line-clamp-3 leading-relaxed">${item.text}</p>
                         </div>
-                        <button onclick="copyPrompt('${item.text.replace(/'/g, "\\'")}', this)" class="w-full bg-gray-800/80 hover:bg-gradient-to-r hover:from-neoncyan hover:to-neongreen hover:text-black text-gray-200 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-md">
+                        <button onclick="copyPrompt('${item.text.replace(/'/g, "\\'")}', this)" class="w-full bg-[#201738] hover:bg-gradient-to-r hover:from-neoncyan hover:to-neongreen hover:text-black text-gray-200 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-md">
                             <i class="fa-regular fa-copy"></i>
                             <span>Copy Prompt</span>
                         </button>
@@ -225,7 +225,7 @@
             btn.className = "w-full bg-neongreen text-black py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-lg";
             setTimeout(() => {
                 btn.innerHTML = originalHTML;
-                btn.className = "w-full bg-gray-800/80 hover:bg-gradient-to-r hover:from-neoncyan hover:to-neongreen hover:text-black text-gray-200 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-md";
+                btn.className = "w-full bg-[#201738] hover:bg-gradient-to-r hover:from-neoncyan hover:to-neongreen hover:text-black text-gray-200 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-md";
             }, 2000);
         }
 
@@ -275,4 +275,4 @@
         renderPrompts(prompts);
     </script>
 </body>
-    </html>
+</html>                                
