@@ -1,9 +1,9 @@
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptVault - AI Prompt Hub</title>
+    <title>HuzafsTech - AI Prompt Hub</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -31,7 +31,7 @@
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <i class="fa-solid fa-terminal text-neoncyan text-2xl"></i>
-                <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-neoncyan to-neongreen bg-clip-text text-transparent">PromptVault</span>
+                <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-neoncyan to-neongreen bg-clip-text text-transparent">HuzafsTech</span>
             </div>
             <button onclick="openModal()" class="bg-gradient-to-r from-neoncyan to-neongreen text-black font-semibold px-4 py-2 rounded-lg text-sm hover:opacity-90 transition shadow-lg shadow-neoncyan/20">
                 <i class="fa-solid fa-plus mr-1"></i> Add Prompt
@@ -45,12 +45,12 @@
         <!-- Hero Section -->
         <div class="text-center mb-10">
             <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Discover & Share Best <span class="text-neoncyan">AI Prompts</span></h1>
-            <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">Ek aisi jagah jahan developers, creators aur coders ke liye powerful AI prompts ek hi click par milte hain.</p>
+            <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">Welcome to HuzafsTech! Coding, Image Editing, aur Car/Cinematic AI prompts ka sabse behtareen collection.</p>
             
             <!-- Search & Filter Bar -->
             <div class="mt-6 max-w-md mx-auto relative">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-500"></i>
-                <input type="text" id="searchInput" onkeyup="filterPrompts()" placeholder="Search prompts or categories..." class="w-full bg-cardbg border border-gray-800 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-neoncyan transition text-gray-200">
+                <input type="text" id="searchInput" onkeyup="filterPrompts()" placeholder="Search prompts (e.g. car, photo, coding)..." class="w-full bg-cardbg border border-gray-800 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-neoncyan transition text-gray-200">
             </div>
         </div>
 
@@ -67,11 +67,11 @@
             <form id="addForm" onsubmit="addPrompt(event)">
                 <div class="mb-4">
                     <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Title</label>
-                    <input type="text" id="newTitle" required class="w-full bg-darkbg border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Bug Fixer Assistant">
+                    <input type="text" id="newTitle" required class="w-full bg-darkbg border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Cyberpunk Car Portrait">
                 </div>
                 <div class="mb-4">
                     <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Category</label>
-                    <input type="text" id="newCategory" required class="w-full bg-darkbg border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Coding">
+                    <input type="text" id="newCategory" required class="w-full bg-darkbg border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Image Editing">
                 </div>
                 <div class="mb-4">
                     <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Prompt Text</label>
@@ -87,25 +87,43 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Initial Prompts Data
+        // Updated Prompts Data including Image Editing, Cars & Coding
         let prompts = [
             {
                 id: 1,
-                title: "Clean Code & Refactor",
-                category: "Coding",
-                text: "Act as a senior software engineer. Review the following code, identify any performance bottlenecks, clean up redundant lines, and rewrite it following best practices."
+                title: "Cinematic Car Photo Enhancer",
+                category: "Image Editing",
+                text: "Transform this car photo into a high-end cinematic shot. Enhance the glossy reflections on the body paint, add moody neon street lighting reflecting on wet asphalt, 8k resolution, photorealistic."
             },
             {
                 id: 2,
-                title: "SEO Blog Post Outliner",
-                category: "Writing",
-                text: "Generate a comprehensive SEO-optimized blog post outline for the topic [Insert Topic]. Include H2 and H3 headings, target keywords, and a short summary for each section."
+                title: "Professional Portrait Retouch",
+                category: "Image Editing",
+                text: "Retouch this person's portrait naturally. Improve lighting, smooth skin texture while keeping realistic pores, adjust color grading to a warm golden-hour tone, professional studio quality."
             },
             {
                 id: 3,
-                title: "UI/UX Dark Theme Designer",
-                category: "Design",
-                text: "Act as an expert UI/UX designer. Suggest a color palette, typography pairing, and component layout guidelines using a dark green and cyan theme for a tech dashboard."
+                title: "Cyberpunk Sports Car Render",
+                category: "Cars & AI",
+                text: "Generate a futuristic sports car driving through a neon-lit Tokyo alley at night. Heavy cyberpunk aesthetics, glowing cyan and magenta lights, rain puddles reflecting neon signs, hyper-detailed."
+            },
+            {
+                id: 4,
+                title: "Clean Code & Refactor Assistant",
+                category: "Coding",
+                text: "Act as a senior software engineer. Review the following code, identify performance bottlenecks, clean up redundant lines, and rewrite it following best practices."
+            },
+            {
+                id: 5,
+                title: "Anime / Cartoon Style Avatar",
+                category: "Image Editing",
+                text: "Convert this user photo into a high-quality modern 3D anime character style, vibrant colors, soft studio lighting, detailed facial expressions, Pixar/Disney 3D animation look."
+            },
+            {
+                id: 6,
+                title: "Luxury Car Showroom Background",
+                category: "Cars & AI",
+                text: "Place this car inside a minimalist, futuristic luxury glass showroom with subtle spotlights highlighting the vehicle curves, dark polished concrete floor, ultra-realistic."
             }
         ];
 
@@ -168,6 +186,10 @@
             document.getElementById('promptModal').classList.add('flex');
         }
 
+        backgroundClose = function() {
+            closeModal();
+        }
+
         function closeModal() {
             document.getElementById('promptModal').classList.remove('flex');
             document.getElementById('promptModal').classList.add('hidden');
@@ -178,7 +200,7 @@
         function addPrompt(e) {
             e.preventDefault();
             const title = document.getElementById('newTitle').value;
-            const category = document.getElementById('newCategory/').value || document.getElementById('newCategory').value;
+            const category = document.getElementById('newCategory').value;
             const text = document.getElementById('newText').value;
 
             const newObj = {
@@ -197,4 +219,4 @@
         renderPrompts(prompts);
     </script>
 </body>
-                                                                                                                                                                                          </html>                      
+</html>
