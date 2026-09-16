@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HuzafsTech - AI Prompt Hub</title>
+    <title>HuzafsTech - Ultimate AI Prompt Hub</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,8 +12,8 @@
             theme: {
                 extend: {
                     colors: {
-                        darkbg: '#0b0f0e',
-                        cardbg: '#131b18',
+                        darkbg: '#050c09',
+                        cardbg: '#0f1713',
                         neoncyan: '#00f2fe',
                         neongreen: '#00ff87',
                     }
@@ -23,63 +23,99 @@
     </script>
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Smooth Animated Background Styles -->
+    <style>
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animated-bg {
+            background: linear-gradient(135deg, #030806, #061a12, #00221d, #021217);
+            background-size: 300% 300%;
+            animation: gradientAnimation 12s ease infinite;
+        }
+    </style>
 </head>
-<body class="bg-darkbg text-gray-200 min-h-screen font-sans selection:bg-neoncyan selection:text-black">
+<body class="animated-bg text-gray-200 min-h-screen flex flex-col justify-between font-sans selection:bg-neoncyan selection:text-black">
 
-    <!-- Header / Navbar -->
-    <header class="border-b border-gray-800 bg-cardbg/50 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-terminal text-neoncyan text-2xl"></i>
-                <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-neoncyan to-neongreen bg-clip-text text-transparent">HuzafsTech</span>
+    <div>
+        <!-- Header / Navbar -->
+        <header class="border-b border-gray-800/80 bg-cardbg/70 backdrop-blur-md sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-terminal text-neoncyan text-2xl animate-pulse"></i>
+                    <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-neoncyan to-neongreen bg-clip-text text-transparent">HuzafsTech</span>
+                </div>
+                <button onclick="openModal()" class="bg-gradient-to-r from-neoncyan to-neongreen text-black font-bold px-4 py-2 rounded-xl text-sm hover:opacity-90 transition shadow-lg shadow-neoncyan/20 flex items-center space-x-1">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Add Prompt</span>
+                </button>
             </div>
-            <button onclick="openModal()" class="bg-gradient-to-r from-neoncyan to-neongreen text-black font-semibold px-4 py-2 rounded-lg text-sm hover:opacity-90 transition shadow-lg shadow-neoncyan/20">
-                <i class="fa-solid fa-plus mr-1"></i> Add Prompt
-            </button>
-        </div>
-    </header>
+        </header>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 py-8">
-        
-        <!-- Hero Section -->
-        <div class="text-center mb-10">
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Discover & Share Best <span class="text-neoncyan">AI Prompts</span></h1>
-            <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">Welcome to HuzafsTech! Coding, Image Editing, aur Car/Cinematic AI prompts ka sabse behtareen collection.</p>
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 py-10">
             
-            <!-- Search & Filter Bar -->
-            <div class="mt-6 max-w-md mx-auto relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-500"></i>
-                <input type="text" id="searchInput" onkeyup="filterPrompts()" placeholder="Search prompts (e.g. car, photo, coding)..." class="w-full bg-cardbg border border-gray-800 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-neoncyan transition text-gray-200">
+            <!-- Hero Section -->
+            <div class="text-center mb-12">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-neoncyan/10 text-neoncyan border border-neoncyan/30 uppercase tracking-widest mb-4 inline-block">The Ultimate 2026 AI Prompt Library</span>
+                <h1 class="text-3xl md:text-6xl font-extrabold mb-4 tracking-tight">Discover & Share Pro <span class="text-neoncyan">AI Prompts</span></h1>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">Welcome to HuzafsTech! Cutting-edge prompts for Image Editing, Supercars, Coding, 3D Avatars, and Viral Content creation.</p>
+                
+                <!-- Search & Filter Bar -->
+                <div class="mt-8 max-w-xl mx-auto relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-gray-400"></i>
+                    <input type="text" id="searchInput" onkeyup="filterPrompts()" placeholder="Search any prompt (e.g. car, photo, coding, avatar)..." class="w-full bg-cardbg/80 border border-gray-800 rounded-2xl pl-12 pr-4 py-3.5 text-sm focus:outline-none focus:border-neoncyan transition text-gray-200 shadow-xl backdrop-blur-sm">
+                </div>
+            </div>
+
+            <!-- Prompts Grid -->
+            <div id="promptGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically injected via JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer with Copyright -->
+    <footer class="border-t border-gray-800/80 bg-cardbg/90 backdrop-blur-md py-6 mt-16 text-center text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-code text-neoncyan"></i>
+                <span class="font-bold text-gray-200">HuzafsTech AI Hub</span>
+            </div>
+            <p>© 2026 HuzafsTech. All rights reserved. Built for Creators & Coders.</p>
+            <div class="flex space-x-4 text-neoncyan">
+                <span class="hover:text-neongreen transition cursor-pointer"><i class="fa-brands fa-github"></i></span>
+                <span class="hover:text-neongreen transition cursor-pointer"><i class="fa-brands fa-twitter"></i></span>
+                <span class="hover:text-neongreen transition cursor-pointer"><i class="fa-brands fa-discord"></i></span>
             </div>
         </div>
-
-        <!-- Prompts Grid -->
-        <div id="promptGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Cards will be dynamically injected here via JS -->
-        </div>
-    </main>
+    </footer>
 
     <!-- Add Prompt Modal -->
-    <div id="promptModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden justify-center items-center z-50 px-4">
+    <div id="promptModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden justify-center items-center z-50 px-4">
         <div class="bg-cardbg border border-gray-800 w-full max-w-lg rounded-2xl p-6 shadow-2xl relative">
-            <h2 class="text-xl font-bold mb-4 text-neoncyan">Add New Prompt</h2>
+            <h2 class="text-xl font-bold mb-4 text-neoncyan flex items-center space-x-2">
+                <i class="fa-solid fa-circle-plus"></i>
+                <span>Add New Prompt</span>
+            </h2>
             <form id="addForm" onsubmit="addPrompt(event)">
                 <div class="mb-4">
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Title</label>
-                    <input type="text" id="newTitle" required class="w-full bg-darkbg border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Cyberpunk Car Portrait">
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-semibold">Title</label>
+                    <input type="text" id="newTitle" required class="w-full bg-darkbg border border-gray-800 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Ultra Realistic Cyberpunk Portrait">
                 </div>
                 <div class="mb-4">
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Category</label>
-                    <input type="text" id="newCategory" required class="w-full bg-darkbg border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Image Editing">
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-semibold">Category</label>
+                    <input type="text" id="newCategory" required class="w-full bg-darkbg border border-gray-800 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Image Editing">
                 </div>
                 <div class="mb-4">
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Prompt Text</label>
-                    <textarea id="newText" rows="4" required class="w-full bg-darkbg border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="Write your detailed prompt here..."></textarea>
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-semibold">Prompt Text</label>
+                    <textarea id="newText" rows="4" required class="w-full bg-darkbg border border-gray-800 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="Write your high-converting prompt here..."></textarea>
                 </div>
                 <div class="flex justify-end space-x-3">
-                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-lg text-sm bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Cancel</button>
-                    <button type="submit" class="px-4 py-2 rounded-lg text-sm bg-neongreen text-black font-semibold hover:opacity-90 transition">Save Prompt</button>
+                    <button type="button" onclick="closeModal()" class="px-4 py-2.5 rounded-xl text-sm bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Cancel</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl text-sm bg-gradient-to-r from-neoncyan to-neongreen text-black font-bold hover:opacity-90 transition">Save Prompt</button>
                 </div>
             </form>
         </div>
@@ -87,43 +123,67 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Updated Prompts Data including Image Editing, Cars & Coding
+        // Massive Collection of Pro & Trending Prompts
         let prompts = [
             {
                 id: 1,
-                title: "Cinematic Car Photo Enhancer",
-                category: "Image Editing",
-                text: "Transform this car photo into a high-end cinematic shot. Enhance the glossy reflections on the body paint, add moody neon street lighting reflecting on wet asphalt, 8k resolution, photorealistic."
+                title: "Cinematic Supercar Photo Enhancer",
+                category: "Cars & AI",
+                text: "Transform this car photo into a high-end cinematic commercial shot. Enhance glossy reflections on body paint, add moody neon street lighting reflecting on wet asphalt, dramatic smoke accents, 8k resolution, ultra-photorealistic."
             },
             {
                 id: 2,
-                title: "Professional Portrait Retouch",
+                title: "Pro Photo Retouch & Studio Lighting",
                 category: "Image Editing",
-                text: "Retouch this person's portrait naturally. Improve lighting, smooth skin texture while keeping realistic pores, adjust color grading to a warm golden-hour tone, professional studio quality."
+                text: "Retouch this person's portrait naturally. Improve dramatic studio lighting, smooth skin texture while keeping realistic pores, adjust color grading to a rich golden-hour tone, high-end fashion magazine quality."
             },
             {
                 id: 3,
-                title: "Cyberpunk Sports Car Render",
+                title: "Cyberpunk Night Tokyo Car Render",
                 category: "Cars & AI",
-                text: "Generate a futuristic sports car driving through a neon-lit Tokyo alley at night. Heavy cyberpunk aesthetics, glowing cyan and magenta lights, rain puddles reflecting neon signs, hyper-detailed."
+                text: "Generate a hyper-detailed futuristic sports car cruising through a neon-lit Tokyo alley at night. Heavy cyberpunk aesthetics, glowing cyan and electric green highlights, rain puddles reflecting bright signs, 4k render."
             },
             {
                 id: 4,
-                title: "Clean Code & Refactor Assistant",
+                title: "Senior Software Engineer Code Refactor",
                 category: "Coding",
-                text: "Act as a senior software engineer. Review the following code, identify performance bottlenecks, clean up redundant lines, and rewrite it following best practices."
+                text: "Act as an expert senior software engineer and architect. Review the following code, identify security flaws and performance bottlenecks, clean up redundant code, and rewrite it following modern industry best practices with comments."
             },
             {
                 id: 5,
-                title: "Anime / Cartoon Style Avatar",
+                title: "3D Pixar / Disney Style Avatar",
                 category: "Image Editing",
-                text: "Convert this user photo into a high-quality modern 3D anime character style, vibrant colors, soft studio lighting, detailed facial expressions, Pixar/Disney 3D animation look."
+                text: "Convert this user photo into a high-quality modern 3D animated character style, vibrant rich colors, soft cinematic studio lighting, expressive facial features, Pixar animation studio aesthetic."
             },
             {
                 id: 6,
-                title: "Luxury Car Showroom Background",
+                title: "Luxury Carbon-Fiber Showroom",
                 category: "Cars & AI",
-                text: "Place this car inside a minimalist, futuristic luxury glass showroom with subtle spotlights highlighting the vehicle curves, dark polished concrete floor, ultra-realistic."
+                text: "Place this car inside a minimalist, futuristic underground luxury carbon-fiber showroom with precision overhead spotlights highlighting the vehicle's aggressive curves, polished black concrete floor, ultra-realistic."
+            },
+            {
+                id: 7,
+                title: "Bug Debugger & Fixer Assistant",
+                category: "Coding",
+                text: "Analyze this buggy code snippet, explain why the bug is occurring in simple terms, and provide the exact corrected code block with optimized performance."
+            },
+            {
+                id: 8,
+                title: "Dark Fantasy Anime Wallpaper",
+                category: "AI Art",
+                text: "Create a breathtaking dark fantasy anime landscape featuring a lone warrior standing on a cliff under a glowing cyan moon, emerald green magical mist swirling around, intricate details, masterpiece."
+            },
+            {
+                id: 9,
+                title: "Viral Instagram Hook & Caption Writer",
+                category: "Content Writing",
+                text: "Act as a pro social media growth manager. Write 5 viral hook options and a high-engagement caption for a post about [Insert Topic], including relevant trending hashtags."
+            },
+            {
+                id: 10,
+                title: "Full-Stack Web App Architect",
+                category: "Coding",
+                text: "Design a complete scalable folder structure and tech stack architecture for a web application that [Insert App Idea]. Include frontend framework choices, database design, and API routing strategy."
             }
         ];
 
@@ -133,22 +193,22 @@
             grid.innerHTML = '';
 
             if(data.length === 0) {
-                grid.innerHTML = `<p class="text-gray-500 col-span-full text-center py-10">No prompts found.</p>`;
+                grid.innerHTML = `<div class="col-span-full text-center py-16 bg-cardbg/50 rounded-2xl border border-gray-800"><i class="fa-regular fa-face-frown text-4xl text-gray-500 mb-3"></i><p class="text-gray-400">No prompts found matching your search.</p></div>`;
                 return;
             }
 
             data.forEach(item => {
                 grid.innerHTML += `
-                    <div class="bg-cardbg border border-gray-800/80 rounded-2xl p-5 flex flex-col justify-between hover:border-neoncyan/50 transition duration-300 group shadow-lg">
+                    <div class="bg-cardbg/90 border border-gray-800/80 rounded-2xl p-5 flex flex-col justify-between hover:border-neoncyan/60 transition duration-300 group shadow-xl backdrop-blur-sm">
                         <div>
                             <div class="flex justify-between items-center mb-3">
-                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-neoncyan/10 text-neoncyan border border-neoncyan/20">${item.category}</span>
+                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-neoncyan/10 text-neoncyan border border-neoncyan/20">${item.category}</span>
                                 <i class="fa-regular fa-bookmark text-gray-500 group-hover:text-neongreen transition cursor-pointer"></i>
                             </div>
-                            <h3 class="text-lg font-bold mb-2 text-gray-100">${item.title}</h3>
-                            <p class="text-gray-400 text-sm mb-4 bg-darkbg/50 p-3 rounded-xl border border-gray-800/50 font-mono text-xs line-clamp-3">${item.text}</p>
+                            <h3 class="text-lg font-bold mb-2 text-gray-100 group-hover:text-neoncyan transition">${item.title}</h3>
+                            <p class="text-gray-400 text-xs md:text-sm mb-4 bg-darkbg/70 p-3.5 rounded-xl border border-gray-800/50 font-mono line-clamp-3 leading-relaxed">${item.text}</p>
                         </div>
-                        <button onclick="copyPrompt('${item.text.replace(/'/g, "\\'")}', this)" class="w-full bg-gray-800 hover:bg-neoncyan hover:text-black text-gray-200 py-2.5 rounded-xl text-xs font-semibold transition flex items-center justify-center space-x-2">
+                        <button onclick="copyPrompt('${item.text.replace(/'/g, "\\'")}', this)" class="w-full bg-gray-800/80 hover:bg-gradient-to-r hover:from-neoncyan hover:to-neongreen hover:text-black text-gray-200 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-md">
                             <i class="fa-regular fa-copy"></i>
                             <span>Copy Prompt</span>
                         </button>
@@ -161,11 +221,11 @@
         function copyPrompt(text, btn) {
             navigator.clipboard.writeText(text);
             const originalHTML = btn.innerHTML;
-            btn.innerHTML = `<i class="fa-solid fa-check text-black"></i> <span>Copied!</span>`;
-            btn.classList.add('bg-neongreen', 'text-black');
+            btn.innerHTML = `<i class="fa-solid fa-check text-black"></i> <span>Copied Successfully!</span>`;
+            btn.className = "w-full bg-neongreen text-black py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-lg";
             setTimeout(() => {
                 btn.innerHTML = originalHTML;
-                btn.classList.remove('bg-neongreen', 'text-black');
+                btn.className = "w-full bg-gray-800/80 hover:bg-gradient-to-r hover:from-neoncyan hover:to-neongreen hover:text-black text-gray-200 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-md";
             }, 2000);
         }
 
@@ -184,10 +244,6 @@
         function openModal() {
             document.getElementById('promptModal').classList.remove('hidden');
             document.getElementById('promptModal').classList.add('flex');
-        }
-
-        backgroundClose = function() {
-            closeModal();
         }
 
         function closeModal() {
@@ -219,4 +275,4 @@
         renderPrompts(prompts);
     </script>
 </body>
-</html>
+    </html>
