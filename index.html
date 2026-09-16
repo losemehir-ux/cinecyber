@@ -1,501 +1,200 @@
-<!DOCTYPE html>
-<html lang="en">
+      <!DOCTYPE html>
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineCyber huzafsnet- 100 Ultimate Masterpieces</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    <title>PromptVault - AI Prompt Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0b0f0e',
+                        cardbg: '#131b18',
+                        neoncyan: '#00f2fe',
+                        neongreen: '#00ff87',
+                    }
+                }
+            }
         }
-        body {
-            background-color: #0b0b0b;
-            color: #f1f1f1;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background-color: #141414;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #222;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-            
-        .logo {
-            background-color: #f5c518;
-            color: #000;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 1.2rem;
-        }
-        .search-box {
-            background-color: #222;
-            border: 1px solid #333;
-            border-radius: 4px;
-            padding: 8px 15px;
-            width: 300px;
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .search-box:focus {
-            border-color: #f5c518;
-        }
-        .main-container {
-            padding: 30px;
-            flex: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            border-left: 4px solid #f5c518;
-            padding-left: 10px;
-        }
-        .section-header h2 {
-            font-size: 1.5rem;
-            color: #f5c518;
-        }
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-        .movie-card {
-            background-color: #181818;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #222;
-        }
-        .movie-card:hover {
-            transform: translateY(-5px);
-            border-color: #444;
-        }
-        .poster-box {
-            width: 100%;
-            height: 300px;
-            background-color: #222;
-            overflow: hidden;
-        }
-        .poster-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .movie-info {
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            justify-content: space-between;
-        }
-        .rating-row {
-            display: flex;
-            align-items: center;
-            font-size: 0.85rem;
-            color: #ccc;
-            margin-bottom: 5px;
-        }
-        .star {
-            color: #f5c518;
-            margin-right: 5px;
-        }
-        .movie-title {
-            color: #fff;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-            display: block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .card-btn {
-            background-color: #222;
-            color: #fff;
-            border: none;
-            padding: 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            width: 100%;
-            transition: background 0.2s;
-        }
-        .card-btn:hover {
-            background-color: #f5c518;
-            color: #000;
-        }
-        
-        /* Modal Popup Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #181818;
-            padding: 25px;
-            border-radius: 8px;
-            max-width: 600px;
-            width: 90%;
-            border: 1px solid #333;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .close-btn {
-            position: absolute;
-            right: 15px;
-            top: 10px;
-            font-size: 1.5rem;
-            color: #aaa;
-            cursor: pointer;
-        }
-        .close-btn:hover {
-            color: #fff;
-        }
-        .modal-body {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .modal-body img {
-            width: 150px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 6px;
-        }
-        .modal-details {
-            flex: 1;
-        }
-        .modal-details h3 {
-            color: #f5c518;
-            margin-bottom: 10px;
-        }
-        .modal-details p {
-            color: #ccc;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            margin-bottom: 8px;
-        }
-
-        .rating-section {
-            background-color: #141414;
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 50px;
-            border: 1px solid #222;
-            text-align: center;
-        }
-        .rating-section h3 {
-            color: #f5c518;
-            margin-bottom: 15px;
-        }
-        .stars-container {
-            font-size: 2rem;
-            cursor: pointer;
-            color: #555;
-            margin-bottom: 15px;
-        }
-        .stars-container .selected {
-            color: #f5c518;
-        }
-        .rating-section textarea {
-            width: 100%;
-            max-width: 600px;
-            height: 100px;
-            padding: 10px;
-            border-radius: 4px;
-            border: none;
-            background-color: #222;
-            color: #fff;
-            margin-bottom: 15px;
-            resize: none;
-        }
-        .submit-rating-btn {
-            background-color: #f5c518;
-            color: #000;
-            border: none;
-            padding: 10px 25px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .submit-rating-btn:hover {
-            background-color: #e5b510;
-        }
-        footer {
-            background-color: #141414;
-            text-align: center;
-            padding: 20px;
-            color: #777;
-            font-size: 0.9rem;
-            border-top: 1px solid #222;
-            margin-top: auto;
-            .theme-toggle-btn {
-    background: linear-gradient(135deg, #00bcd4, #00838f);
-    color: #051614;
-    border: none;
-    padding: 12px 24px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 30px;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.theme-toggle-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 188, 212, 0.6);
-}
-
-.theme-toggle-btn:active {
-    transform: scale(0.95);
-}
-        
-    </style>
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="bg-darkbg text-gray-200 min-h-screen font-sans selection:bg-neoncyan selection:text-black">
 
-    <header>
-        <div class="logo">huzafnet</div>
-        <input type="text" id="searchInput" class="search-box" placeholder="Search movies or series..." onkeyup="filterMovies()">
-        <button class="theme-toggle-btn" id="themeBtn" onclick="toggleTheme()">
-    <span id="themeIcon">☀️</span> <span id="themeText">Light Mode</span>
-</button>
+    <!-- Header / Navbar -->
+    <header class="border-b border-gray-800 bg-cardbg/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-terminal text-neoncyan text-2xl"></i>
+                <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-neoncyan to-neongreen bg-clip-text text-transparent">PromptVault</span>
+            </div>
+            <button onclick="openModal()" class="bg-gradient-to-r from-neoncyan to-neongreen text-black font-semibold px-4 py-2 rounded-lg text-sm hover:opacity-90 transition shadow-lg shadow-neoncyan/20">
+                <i class="fa-solid fa-plus mr-1"></i> Add Prompt
+            </button>
+        </div>
     </header>
 
-    <div class="main-container">
-        <div class="section-header">
-            <h2>Curated Masterpieces</h2>
-        </div>
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
         
-        <div class="movie-grid" id="movieGrid">
-            <!-- Dynamic Cards -->
-        </div>
-
-        <div class="rating-section">
-            <h3>Your feedback matters to us—help us improve with your rating!</h3>
-            <div class="stars-container" id="starContainer">
-                <span data-value="1">★</span>
-                <span data-value="2">★</span>
-                <span data-value="3">★</span>
-                <span data-value="4">★</span>
-                <span data-value="5">★</span>
+        <!-- Hero Section -->
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Discover & Share Best <span class="text-neoncyan">AI Prompts</span></h1>
+            <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">Ek aisi jagah jahan developers, creators aur coders ke liye powerful AI prompts ek hi click par milte hain.</p>
+            
+            <!-- Search & Filter Bar -->
+            <div class="mt-6 max-w-md mx-auto relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-500"></i>
+                <input type="text" id="searchInput" onkeyup="filterPrompts()" placeholder="Search prompts or categories..." class="w-full bg-cardbg border border-gray-800 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-neoncyan transition text-gray-200">
             </div>
-            <textarea id="feedbackText" placeholder="Write your feedback here..."></textarea>
-            <br>
-            <button class="submit-rating-btn" onclick="submitRating()">Submit Rating</button>
         </div>
-    </div>
 
-    <!-- Movie Details Modal -->
-    <div class="modal" id="movieModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div class="modal-body">
-                <img id="modalCharImg" src="" alt="Main Character">
-                <div class="modal-details">
-                    <h3 id="modalTitle"></h3>
-                    <p><strong>Rating:</strong> <span id="modalRating"></span>/10</p>
-                    <p><strong>Main Character:</strong> <span id="modalCharacter"></span></p>
-                    <p id="modalDesc"></p>
+        <!-- Prompts Grid -->
+        <div id="promptGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cards will be dynamically injected here via JS -->
+        </div>
+    </main>
+
+    <!-- Add Prompt Modal -->
+    <div id="promptModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden justify-center items-center z-50 px-4">
+        <div class="bg-cardbg border border-gray-800 w-full max-w-lg rounded-2xl p-6 shadow-2xl relative">
+            <h2 class="text-xl font-bold mb-4 text-neoncyan">Add New Prompt</h2>
+            <form id="addForm" onsubmit="addPrompt(event)">
+                <div class="mb-4">
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Title</label>
+                    <input type="text" id="newTitle" required class="w-full bg-darkbg border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Bug Fixer Assistant">
                 </div>
-            </div>
+                <div class="mb-4">
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Category</label>
+                    <input type="text" id="newCategory" required class="w-full bg-darkbg border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="e.g. Coding">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Prompt Text</label>
+                    <textarea id="newText" rows="4" required class="w-full bg-darkbg border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-200" placeholder="Write your detailed prompt here..."></textarea>
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-lg text-sm bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Cancel</button>
+                    <button type="submit" class="px-4 py-2 rounded-lg text-sm bg-neongreen text-black font-semibold hover:opacity-90 transition">Save Prompt</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 CineCyber Database. Developed by Huzaifa.</p>
-    </footer>
-
+    <!-- JavaScript Logic -->
     <script>
-        const moviesData = [
-            { id: 1, title: "The Matrix", rating: "8.7", poster: "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg", character: "Neo (Keanu Reeves)", charImg: "https://image.tmdb.org/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg", desc: "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers." },
-            { id: 2, title: "Interstellar", rating: "8.7", poster: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg", character: "Joseph Cooper (Matthew McConaughey)", charImg: "https://image.tmdb.org/t/p/w500/wmdGdbNCwWbW4D01W3YV3ZkX6bK.jpg", desc: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival." },
-            { id: 3, title: "Inception", rating: "8.8", poster: "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg", character: "Dom Cobb (Leonardo DiCaprio)", charImg: "https://image.tmdb.org/t/p/w500/wo2hJpn04vbtmh0B9utCFdsQhxM.jpg", desc: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea." },
-            { id: 4, title: "Breaking Bad", rating: "9.5", poster: "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg", character: "Walter White (Bryan Cranston)", charImg: "https://image.tmdb.org/t/p/w500/7JiedWbGEHA6eZ3A7bA562B28h9.jpg", desc: "A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student." },
-            { id: 5, title: "Fight Club", rating: "8.8", poster: "https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg", character: "Tyler Durden (Brad Pitt)", charImg: "https://image.tmdb.org/t/p/w500/cckcYNYLHJjMWYDZVXlX5pQJdFR.jpg", desc: "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into something much more." },
-            { id: 6, title: "The Dark Knight", rating: "9.0", poster: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg", character: "Batman / Bruce Wayne (Christian Bale)", charImg: "https://image.tmdb.org/t/p/w500/qYNmzIOrcmR8A0WlE7wYJ5hNkhD.jpg", desc: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological tests." },
-            { id: 7, title: "Pulp Fiction", rating: "8.9", poster: "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg", character: "Vincent Vega (John Travolta)", charImg: "https://image.tmdb.org/t/p/w500/fiodx81qjYn9XjRk0l72K3yXk5z.jpg", desc: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption." },
-            { id: 8, title: "Gladiator", rating: "8.5", poster: "https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg", character: "Maximus (Russell Crowe)", charImg: "https://image.tmdb.org/t/p/w500/cQvc5q5u40qQx4cZ6v1j3R6Y9yL.jpg", desc: "A former Roman general sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery." },
-            { id: 9, title: "Blade Runner 2049", rating: "8.0", poster: "https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg", character: "K (Ryan Gosling)", charImg: "https://image.tmdb.org/t/p/w500/lyUyRH8JqA0L0zB1oQ0FjJ4h4q9.jpg", desc: "Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard." },
-            { id: 10, title: "Spider-Man: Into the Spider-Verse", rating: "8.4", poster: "https://image.tmdb.org/t/p/w500/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg", character: "Miles Morales", charImg: "https://image.tmdb.org/t/p/w500/q2g1gN4J1Vj9cZqjY3hW7u5X7Vb.jpg", desc: "Teenager Miles Morales becomes the Spider-Man of his universe, and must join with five spider-powered counterparts from other dimensions." },
-            { id: 11, title: "Avatar", rating: "7.9", poster: "https://image.tmdb.org/t/p/w500/kyeShkV8swvHmiw8rK3bZc3xP4z.jpg", character: "Jake Sully (Sam Worthington)", charImg: "https://image.tmdb.org/t/p/w500/7vXjXqgE9y8K42X377K7hXm8x2z.jpg", desc: "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world." },
-            { id: 12, title: "Avengers: Endgame", rating: "8.4", poster: "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg", character: "Iron Man / Tony Stark (Robert Downey Jr.)", charImg: "https://image.tmdb.org/t/p/w500/5qHNjhtjMD4YWH3UP0rm4tKwxCL.jpg", desc: "After the devastating events of Infinity War, the universe is in ruins. The Avengers assemble once more to reverse Thanos' actions." },
-            { id: 13, title: "Joker", rating: "8.4", poster: "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg", character: "Arthur Fleck (Joaquin Phoenix)", charImg: "https://image.tmdb.org/t/p/w500/zslCZw9zC5iFqQZt5FkE609dJ.jpg", desc: "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society, embarking on a downward spiral." },
-            { id: 14, title: "Parasite", rating: "8.5", poster: "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg", character: "Kim Ki-taek (Song Kang-ho)", charImg: "https://image.tmdb.org/t/p/w500/t8K7e1VfB6jW21B8pM4yN6V7J2x.jpg", desc: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan." },
-            { id: 15, title: "The Lord of the Rings: The Fellowship of the Ring", rating: "8.8", poster: "https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg", character: "Frodo Baggins (Elijah Wood)", charImg: "https://image.tmdb.org/t/p/w500/6Wv1g8lGjW21B8pM4yN6V7J2x.jpg", desc: "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth." }
+        // Initial Prompts Data
+        let prompts = [
+            {
+                id: 1,
+                title: "Clean Code & Refactor",
+                category: "Coding",
+                text: "Act as a senior software engineer. Review the following code, identify any performance bottlenecks, clean up redundant lines, and rewrite it following best practices."
+            },
+            {
+                id: 2,
+                title: "SEO Blog Post Outliner",
+                category: "Writing",
+                text: "Generate a comprehensive SEO-optimized blog post outline for the topic [Insert Topic]. Include H2 and H3 headings, target keywords, and a short summary for each section."
+            },
+            {
+                id: 3,
+                title: "UI/UX Dark Theme Designer",
+                category: "Design",
+                text: "Act as an expert UI/UX designer. Suggest a color palette, typography pairing, and component layout guidelines using a dark green and cyan theme for a tech dashboard."
+            }
         ];
 
-        let selectedRating = 0;
-        const stars = document.querySelectorAll('#starContainer span');
+        // Render Prompts on Page Load
+        function renderPrompts(data) {
+            const grid = document.getElementById('promptGrid');
+            grid.innerHTML = '';
 
-        stars.forEach(star => {
-            star.addEventListener('click', function() {
-                selectedRating = this.getAttribute('data-value');
-                stars.forEach(s => {
-                    if(s.getAttribute('data-value') <= selectedRating) {
-                        s.classList.add('selected');
-                    } else {
-                        s.classList.remove('selected');
-                    }
-                });
-            });
-        });
-
-        // Google Sheet Web App URL
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbffmE_rXta78txzMDw7GLKbaXfeZa0aG08lJw0Ba2CPJKqludcLjucfULCn7DZ5kt/exec';
-
-        function submitRating() {
-            const feedback = document.getElementById('feedbackText').value;
-            const submitBtn = document.querySelector('.submit-rating-btn');
-
-            if (selectedRating === 0) {
-                alert("Please select at least 1 star before submitting!");
+            if(data.length === 0) {
+                grid.innerHTML = `<p class="text-gray-500 col-span-full text-center py-10">No prompts found.</p>`;
                 return;
             }
 
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Submitting...";
-
-            const data = {
-                rating: selectedRating,
-                feedback: feedback
-            };
-
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(() => {
-                alert(`Thank you for rating our website ${selectedRating} stars! ❤️`);
-                selectedRating = 0;
-                document.getElementById('feedbackText').value = "";
-                stars.forEach(s => s.classList.remove('selected'));
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Submit Rating";
-            })
-            .catch(error => {
-                console.error('Error!', error);
-                alert("Something went wrong. Please try again.");
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Submit Rating";
-            });
-        }
-
-        // Render Movie Grid Function
-        function displayMovies(movies) {
-            const grid = document.getElementById('movieGrid');
-            grid.innerHTML = "";
-            if (movies.length === 0) {
-                grid.innerHTML = "<p style='color: #777; grid-column: 1/-1; text-align: center;'>No movies found!</p>";
-                return;
-            }
-            movies.forEach(movie => {
-                const card = document.createElement('div');
-                card.className = 'movie-card';
-                card.innerHTML = `
-                    <div class="poster-box">
-                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                    </div>
-                    <div class="movie-info">
-                        <div class="rating-row">
-                            <span class="star">★</span>
-                            <span><strong>${movie.rating}</strong>/10</span>
+            data.forEach(item => {
+                grid.innerHTML += `
+                    <div class="bg-cardbg border border-gray-800/80 rounded-2xl p-5 flex flex-col justify-between hover:border-neoncyan/50 transition duration-300 group shadow-lg">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-neoncyan/10 text-neoncyan border border-neoncyan/20">${item.category}</span>
+                                <i class="fa-regular fa-bookmark text-gray-500 group-hover:text-neongreen transition cursor-pointer"></i>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2 text-gray-100">${item.title}</h3>
+                            <p class="text-gray-400 text-sm mb-4 bg-darkbg/50 p-3 rounded-xl border border-gray-800/50 font-mono text-xs line-clamp-3">${item.text}</p>
                         </div>
-                        <span class="movie-title">${movie.title}</span>
-                        <button class="card-btn" onclick="openModal(${movie.id})">Details</button>
+                        <button onclick="copyPrompt('${item.text.replace(/'/g, "\\'")}', this)" class="w-full bg-gray-800 hover:bg-neoncyan hover:text-black text-gray-200 py-2.5 rounded-xl text-xs font-semibold transition flex items-center justify-center space-x-2">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>Copy Prompt</span>
+                        </button>
                     </div>
                 `;
-                grid.appendChild(card);
             });
         }
 
-        // Search Filter Function
-        function filterMovies() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = moviesData.filter(movie => 
-                movie.title.toLowerCase().includes(query) || 
-                movie.character.toLowerCase().includes(query)
-            );
-            displayMovies(filtered);
+        // Copy Function with Feedback
+        function copyPrompt(text, btn) {
+            navigator.clipboard.writeText(text);
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-check text-black"></i> <span>Copied!</span>`;
+            btn.classList.add('bg-neongreen', 'text-black');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-neongreen', 'text-black');
+            }, 2000);
         }
 
-        // Initial render
-        displayMovies(moviesData);
+        // Search/Filter Function
+        function filterPrompts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = prompts.filter(p => 
+                p.title.toLowerCase().includes(query) || 
+                p.category.toLowerCase().includes(query) || 
+                p.text.toLowerCase().includes(query)
+            );
+            renderPrompts(filtered);
+        }
 
-        // Modal Functions
-        function openModal(id) {
-            const movie = moviesData.find(m => m.id === id);
-            if (movie) {
-                document.getElementById('modalTitle').innerText = movie.title;
-                document.getElementById('modalRating').innerText = movie.rating;
-                document.getElementById('modalCharacter').innerText = movie.character;
-                document.getElementById('modalDesc').innerText = movie.desc;
-                document.getElementById('modalCharImg').src = movie.charImg;
-                document.getElementById('movieModal').style.display = 'flex';
-            }
+        // Modal Controls
+        function openModal() {
+            document.getElementById('promptModal').classList.remove('hidden');
+            document.getElementById('promptModal').classList.add('flex');
         }
 
         function closeModal() {
-            document.getElementById('movieModal').style.display = 'none';
+            document.getElementById('promptModal').classList.remove('flex');
+            document.getElementById('promptModal').classList.add('hidden');
+            document.getElementById('addForm').reset();
         }
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('movieModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        }
-        function toggleTheme() {
-    const body = document.body;
-    const themeIcon = document.getElementById('themeIcon');
-    const themeText = document.getElementById('themeText');
+        // Add New Prompt Handler
+        function addPrompt(e) {
+            e.preventDefault();
+            const title = document.getElementById('newTitle').value;
+            const category = document.getElementById('newCategory/').value || document.getElementById('newCategory').value;
+            const text = document.getElementById('newText').value;
 
-    if (body.getAttribute('data-theme') === 'dark') {
-        body.setAttribute('data-theme', 'light');
-        themeIcon.innerText = '🌙';
-        themeText.innerText = 'Dark Mode';
-    } else {
-        body.setAttribute('data-theme', 'dark');
-        themeIcon.innerText = '☀️';
-        themeText.innerText = 'Light Mode';
-    }
+            const newObj = {
+                id: prompts.length + 1,
+                title,
+                category,
+                text
+            };
+
+            prompts.unshift(newObj);
+            renderPrompts(prompts);
+            closeModal();
         }
+
+        // Initial Call
+        renderPrompts(prompts);
     </script>
 </body>
-            </html>
+                                                                                                                                                                                          </html>                      
