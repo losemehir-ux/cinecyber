@@ -1,278 +1,361 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HuzafsTech - Ultimate AI Prompt Hub</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        boxbg: '#161026',        /* Rich Purple Box Color */
-                        neoncyan: '#00f2fe',
-                        neongreen: '#00ff87',
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Smooth, Lag-Free & Brighter Animated Background -->
+    <title>Huzaifstech - Aesthetic Wallpapers</title>
     <style>
-        @keyframes smoothGlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         body {
-            background: linear-gradient(135s ease, #06241b, #09382b, #00363a, #0b1d3a);
-            background: linear-gradient(135deg, #072b20, #0c4232, #023840, #102542);
-            background-size: 250% 250%;
-            animation: smoothGlow 15s ease infinite;
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid #222;
+            background: #0a0a0a;
+        }
+
+        header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #e0e0e0;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 25px auto 10px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            background: #121212;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar:focus {
+            border-color: #666;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 15px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cat-btn {
+            background: #141414;
+            color: #bbb;
+            border: 1px solid #262626;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .cat-btn:hover, .cat-btn.active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .card {
+            background: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #1f1f1f;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #333;
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+            background: #181818;
+            position: relative;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #ddd;
+        }
+
+        .card-footer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .rating {
+            color: #f39c12;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .download-btn {
+            background: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            background: #dcdcdc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 13px;
+            background: #0a0a0a;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+            }
         }
     </style>
 </head>
-<body class="text-gray-100 min-h-screen flex flex-col justify-between font-sans selection:bg-neoncyan selection:text-black">
+<body>
 
-    <div>
-        <!-- Header / Navbar -->
-        <header class="border-b border-purple-900/40 bg-[#0d0918]/80 backdrop-blur-md sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-terminal text-neoncyan text-2xl animate-pulse"></i>
-                    <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-neoncyan to-neongreen bg-clip-text text-transparent">HuzafsTech</span>
-                </div>
-                <button onclick="openModal()" class="bg-gradient-to-r from-neoncyan to-neongreen text-black font-bold px-4 py-2 rounded-xl text-sm hover:opacity-90 transition shadow-lg shadow-neoncyan/20 flex items-center space-x-1">
-                    <i class="fa-solid fa-plus"></i>
-                    <span>Add Prompt</span>
-                </button>
-            </div>
-        </header>
+    <header>
+        <h1>Huzaifstech Wallpapers</h1>
+        <p>Explore & Download Dark, Aesthetic Wallpapers</p>
+    </header>
 
-        <!-- Main Content -->
-        <main class="max-w-7xl mx-auto px-4 py-10">
-            
-            <!-- Hero Section -->
-            <div class="text-center mb-12">
-                <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-neoncyan/10 text-neoncyan border border-neoncyan/30 uppercase tracking-widest mb-4 inline-block shadow-md">The Ultimate 2026 AI Prompt Library</span>
-                <h1 class="text-3xl md:text-6xl font-extrabold mb-4 tracking-tight">Discover & Share Pro <span class="text-neoncyan">AI Prompts</span></h1>
-                <p class="text-gray-300 max-w-2xl mx-auto text-sm md:text-base">Welcome to HuzafsTech! Cutting-edge prompts for Image Editing, Supercars, Coding, 3D Avatars, and Viral Content creation.</p>
-                
-                <!-- Search & Filter Bar -->
-                <div class="mt-8 max-w-xl mx-auto relative">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-gray-400"></i>
-                    <input type="text" id="searchInput" onkeyup="filterPrompts()" placeholder="Search any prompt (e.g. car, photo, coding, avatar)..." class="w-full bg-[#120d20] border border-purple-900/60 rounded-2xl pl-12 pr-4 py-3.5 text-sm focus:outline-none focus:border-neoncyan transition text-gray-100 shadow-xl backdrop-blur-sm">
-                </div>
-            </div>
-
-            <!-- Prompts Grid -->
-            <div id="promptGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Dynamically injected via JS -->
-            </div>
-        </main>
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search wallpapers (e.g., Cyberpunk, Night, Anime)..." onkeyup="filterWallpapers()">
     </div>
 
-    <!-- Footer with Copyright -->
-    <footer class="border-t border-purple-900/40 bg-[#0d0918]/90 backdrop-blur-md py-6 mt-16 text-center text-xs text-gray-400">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0">
-            <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-code text-neoncyan"></i>
-                <span class="font-bold text-gray-200">HuzafsTech AI Hub</span>
-            </div>
-            <p>© 2026 HuzafsTech. All rights reserved. Built by Huzaifa.</p>
-            <div class="flex space-x-4 text-neoncyan">
-                <span class="hover:text-neongreen transition cursor-pointer"><i class="fa-brands fa-github"></i></span>
-                <span class="hover:text-neongreen transition cursor-pointer"><i class="fa-brands fa-twitter"></i></span>
-                <span class="hover:text-neongreen transition cursor-pointer"><i class="fa-brands fa-discord"></i></span>
-            </div>
-        </div>
+    <div class="categories">
+        <button class="cat-btn active" onclick="filterCategory('all', this)">All</button>
+        <button class="cat-btn" onclick="filterCategory('Cyberpunk', this)">Cyberpunk</button>
+        <button class="cat-btn" onclick="filterCategory('Night & Space', this)">Night & Space</button>
+        <button class="cat-btn" onclick="filterCategory('Anime', this)">Anime</button>
+        <button class="cat-btn" onclick="filterCategory('Dark Minimal', this)">Dark Minimal</button>
+        <button class="cat-btn" onclick="filterCategory('Lo-Fi', this)">Lo-Fi</button>
+    </div>
+
+    <div class="container" id="wallpaperGrid">
+        <!-- Wallpapers will be populated dynamically via JavaScript -->
+    </div>
+
+    <footer>
+        © 2026 Huzaifstech. All Rights Reserved.
     </footer>
 
-    <!-- Add Prompt Modal -->
-    <div id="promptModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden justify-center items-center z-50 px-4">
-        <div class="bg-[#140e24] border border-purple-800/80 w-full max-w-lg rounded-2xl p-6 shadow-2xl relative">
-            <h2 class="text-xl font-bold mb-4 text-neoncyan flex items-center space-x-2">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>Add New Prompt</span>
-            </h2>
-            <form id="addForm" onsubmit="addPrompt(event)">
-                <div class="mb-4">
-                    <label class="block text-xs uppercase tracking-wider text-gray-300 mb-2 font-semibold">Title</label>
-                    <input type="text" id="newTitle" required class="w-full bg-[#0d0918] border border-purple-900/60 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-100" placeholder="e.g. Ultra Realistic Cyberpunk Portrait">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-xs uppercase tracking-wider text-gray-300 mb-2 font-semibold">Category</label>
-                    <input type="text" id="newCategory" required class="w-full bg-[#0d0918] border border-purple-900/60 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-100" placeholder="e.g. Image Editing">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-xs uppercase tracking-wider text-gray-300 mb-2 font-semibold">Prompt Text</label>
-                    <textarea id="newText" rows="4" required class="w-full bg-[#0d0918] border border-purple-900/60 rounded-xl p-3 text-sm focus:outline-none focus:border-neoncyan text-gray-100" placeholder="Write your high-converting prompt here..."></textarea>
-                </div>
-                <div class="flex justify-end space-x-3">
-                    <button type="button" onclick="closeModal()" class="px-4 py-2.5 rounded-xl text-sm bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Cancel</button>
-                    <button type="submit" class="px-5 py-2.5 rounded-xl text-sm bg-gradient-to-r from-neoncyan to-neongreen text-black font-bold hover:opacity-90 transition">Save Prompt</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- JavaScript Logic -->
     <script>
-        // Pro & Trending Prompts Collection
-        let prompts = [
-            {
-                id: 1,
-                title: "Cinematic Supercar Photo Enhancer",
-                category: "Cars & AI",
-                text: "Transform this car photo into a high-end cinematic commercial shot. Enhance glossy reflections on body paint, add moody neon street lighting reflecting on wet asphalt, dramatic smoke accents, 8k resolution, ultra-photorealistic."
-            },
-            {
-                id: 2,
-                title: "Pro Photo Retouch & Studio Lighting",
-                category: "Image Editing",
-                text: "Retouch this person's portrait naturally. Improve dramatic studio lighting, smooth skin texture while keeping realistic pores, adjust color grading to a rich golden-hour tone, high-end fashion magazine quality."
-            },
-            {
-                id: 3,
-                title: "Cyberpunk Night Tokyo Car Render",
-                category: "Cars & AI",
-                text: "Generate a hyper-detailed futuristic sports car cruising through a neon-lit Tokyo alley at night. Heavy cyberpunk aesthetics, glowing cyan and electric green highlights, rain puddles reflecting bright signs, 4k render."
-            },
-            {
-                id: 4,
-                title: "Senior Software Engineer Code Refactor",
-                category: "Coding",
-                text: "Act as an expert senior software engineer and architect. Review the following code, identify security flaws and performance bottlenecks, clean up redundant code, and rewrite it following modern industry best practices with comments."
-            },
-            {
-                id: 5,
-                title: "3D Pixar / Disney Style Avatar",
-                category: "Image Editing",
-                text: "Convert this user photo into a high-quality modern 3D animated character style, vibrant rich colors, soft cinematic studio lighting, expressive facial features, Pixar animation studio aesthetic."
-            },
-            {
-                id: 6,
-                title: "Luxury Carbon-Fiber Showroom",
-                category: "Cars & AI",
-                text: "Place this car inside a minimalist, futuristic underground luxury carbon-fiber showroom with precision overhead spotlights highlighting the vehicle's aggressive curves, polished black concrete floor, ultra-realistic."
-            },
-            {
-                id: 7,
-                title: "Bug Debugger & Fixer Assistant",
-                category: "Coding",
-                text: "Analyze this buggy code snippet, explain why the bug is occurring in simple terms, and provide the exact corrected code block with optimized performance."
-            },
-            {
-                id: 8,
-                title: "Dark Fantasy Anime Wallpaper",
-                category: "AI Art",
-                text: "Create a breathtaking dark fantasy anime landscape featuring a lone warrior standing on a cliff under a glowing cyan moon, emerald green magical mist swirling around, intricate details, masterpiece."
-            },
-            {
-                id: 9,
-                title: "Viral Instagram Hook & Caption Writer",
-                category: "Content Writing",
-                text: "Act as a pro social media growth manager. Write 5 viral hook options and a high-engagement caption for a post about [Insert Topic], including relevant trending hashtags."
-            },
-            {
-                id: 10,
-                title: "Full-Stack Web App Architect",
-                category: "Coding",
-                text: "Design a complete scalable folder structure and tech stack architecture for a web application that [Insert App Idea]. Include frontend framework choices, database design, and API routing strategy."
-            }
+        // 50+ Wallpapers Dataset spanning across categories
+        const wallpapers = [
+            { id: 1, title: "Neon Rainy City Alley", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 2, title: "Midnight Mountain Stargazing", category: "Night & Space", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 3, title: "Cyberpunk Street Samurai", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=800&auto=format&fit=crop", rating: "★ 4.7" },
+            { id: 4, title: "Lonely Moonlit Night", category: "Night & Space", img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 5, title: "Cybernetic Glow Corridor", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop", rating: "★ 4.6" },
+            { id: 6, title: "Dark Aesthetic Room Chill", category: "Lo-Fi", img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 7, title: "Minimalist Deep Black", category: "Dark Minimal", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop", rating: "★ 4.5" },
+            { id: 8, title: "Neon City Skyline Night", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 9, title: "Anime Vibes Rain Window", category: "Anime", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop", rating: "★ 4.7" },
+            { id: 10, title: "Galaxy Starry Night Sky", category: "Night & Space", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 11, title: "Lo-Fi Sunset Coding Room", category: "Lo-Fi", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 12, title: "Dark Abstract Shadow Geometry", category: "Dark Minimal", img: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop", rating: "★ 4.4" },
+            { id: 13, title: "Cyberpunk Hologram Lights", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=800&auto=format&fit=crop", rating: "★ 4.7" },
+            { id: 14, title: "Snowy Pine Mountain Night", category: "Night & Space", img: "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 15, title: "Anime Dusk Cloudscape", category: "Anime", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop", rating: "★ 4.6" },
+            { id: 16, title: "Dark Carbon Texture", category: "Dark Minimal", img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop", rating: "★ 4.3" },
+            { id: 17, title: "Neon Grid Cyberpunk Future", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 18, title: "Deep Space Nebula Cloud", category: "Night & Space", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop", rating: "★ 5.0" },
+            { id: 19, title: "Lo-Fi Chill Night Coffee", category: "Lo-Fi", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop", rating: "★ 4.7" },
+            { id: 20, title: "Anime Cherry Blossom Night", category: "Anime", img: "https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 21, title: "Cyberpunk Dark Hooded Hacker", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 22, title: "Full Moon Mountain Peak", category: "Night & Space", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 23, title: "Dark Minimalist Architecture", category: "Dark Minimal", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop", rating: "★ 4.5" },
+            { id: 24, title: "Lo-Fi Bedroom Neon Lamp", category: "Lo-Fi", img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 25, title: "Anime Cyber City Rain", category: "Anime", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 26, title: "Cyberpunk Motorbike Ride", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=800&auto=format&fit=crop", rating: "★ 4.7" },
+            { id: 27, title: "Silent Night Forest Moon", category: "Night & Space", img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 28, title: "Dark Matte Finish Design", category: "Dark Minimal", img: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop", rating: "★ 4.4" },
+            { id: 29, title: "Lo-Fi Midnight Coding Beats", category: "Lo-Fi", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 30, title: "Anime Starry Train Journey", category: "Anime", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 31, title: "Cyberpunk Neon Arcade", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=800&auto=format&fit=crop", rating: "★ 4.7" },
+            { id: 32, title: "Milky Way Galaxy Arch", category: "Night & Space", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop", rating: "★ 5.0" },
+            { id: 33, title: "Dark Minimal Gradient", category: "Dark Minimal", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop", rating: "★ 4.6" },
+            { id: 34, title: "Lo-Fi Night Skyline View", category: "Lo-Fi", img: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 35, title: "Anime Cyber Girl Rooftop", category: "Anime", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 36, title: "Cyberpunk Neon Alleyway", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop", rating: "★ 4.7" },
+            { id: 37, title: "Night Lake Reflection", category: "Night & Space", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 38, title: "Dark Shadow Silhouette", category: "Dark Minimal", img: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop", rating: "★ 4.5" },
+            { id: 39, title: "Lo-Fi Vinyl Record Player", category: "Lo-Fi", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 40, title: "Anime Sunset Horizon", category: "Anime", img: "https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 41, title: "Cyberpunk Matrix Code Wall", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 42, title: "Night Shooting Star Meteor", category: "Night & Space", img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 43, title: "Dark Solid Obsidian", category: "Dark Minimal", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop", rating: "★ 4.4" },
+            { id: 44, title: "Lo-Fi Quiet Alley Rain", category: "Lo-Fi", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 45, title: "Anime Magical Night Sky", category: "Anime", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop", rating: "★ 4.7" },
+            { id: 46, title: "Cyberpunk Neon Car Drive", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 47, title: "Night Desert Starry Sky", category: "Night & Space", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 48, title: "Dark Minimal Line Art", category: "Dark Minimal", img: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop", rating: "★ 4.5" },
+            { id: 49, title: "Lo-Fi Chill Lofi Girl Vibe", category: "Lo-Fi", img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop", rating: "★ 5.0" },
+            { id: 50, title: "Anime Cyberpunk Warrior", category: "Anime", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
+            { id: 51, title: "Neon Cyberpunk Bridge", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
+            { id: 52, title: "Midnight Eclipse Moon", category: "Night & Space", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" }
         ];
 
-        // Render Prompts on Page Load
-        function renderPrompts(data) {
-            const grid = document.getElementById('promptGrid');
+        let currentCategory = 'all';
+
+        function renderWallpapers(filteredList) {
+            const grid = document.getElementById('wallpaperGrid');
             grid.innerHTML = '';
 
-            if(data.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-16 bg-boxbg rounded-2xl border border-purple-900/40"><i class="fa-regular fa-face-frown text-4xl text-gray-400 mb-3"></i><p class="text-gray-300">No prompts found matching your search.</p></div>`;
+            if (filteredList.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #777; padding: 40px;">No wallpapers found!</p>`;
                 return;
             }
 
-            data.forEach(item => {
-                grid.innerHTML += `
-                    <div class="bg-boxbg border border-purple-900/60 rounded-2xl p-5 flex flex-col justify-between hover:border-neoncyan/70 transition duration-300 group shadow-xl">
+            filteredList.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <img src="${item.img}" alt="${item.title}" loading="lazy">
+                    </div>
+                    <div class="card-content">
                         <div>
-                            <div class="flex justify-between items-center mb-3">
-                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-neoncyan/10 text-neoncyan border border-neoncyan/20">${item.category}</span>
-                                <i class="fa-regular fa-bookmark text-gray-400 group-hover:text-neongreen transition cursor-pointer"></i>
-                            </div>
-                            <h3 class="text-lg font-bold mb-2 text-gray-100 group-hover:text-neoncyan transition">${item.title}</h3>
-                            <p class="text-gray-300 text-xs md:text-sm mb-4 bg-[#0e0a1c] p-3.5 rounded-xl border border-purple-950 font-mono line-clamp-3 leading-relaxed">${item.text}</p>
+                            <div class="card-title">${item.title}</div>
+                            <span style="font-size: 11px; color: #666;">${item.category}</span>
                         </div>
-                        <button onclick="copyPrompt('${item.text.replace(/'/g, "\\'")}', this)" class="w-full bg-[#201738] hover:bg-gradient-to-r hover:from-neoncyan hover:to-neongreen hover:text-black text-gray-200 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-md">
-                            <i class="fa-regular fa-copy"></i>
-                            <span>Copy Prompt</span>
-                        </button>
+                        <div class="card-footer-info">
+                            <span class="rating" onclick="rateWallpaper(this)">${item.rating}</span>
+                            <a href="${item.img}" target="_blank" download class="download-btn">Download</a>
+                        </div>
                     </div>
                 `;
+                grid.appendChild(card);
             });
         }
 
-        // Copy Function with Feedback
-        function copyPrompt(text, btn) {
-            navigator.clipboard.writeText(text);
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = `<i class="fa-solid fa-check text-black"></i> <span>Copied Successfully!</span>`;
-            btn.className = "w-full bg-neongreen text-black py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-lg";
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.className = "w-full bg-[#201738] hover:bg-gradient-to-r hover:from-neoncyan hover:to-neongreen hover:text-black text-gray-200 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-md";
-            }, 2000);
+        function filterCategory(category, btn) {
+            currentCategory = category;
+            
+            // Update active button styles
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            applyFilters();
         }
 
-        // Search/Filter Function
-        function filterPrompts() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = prompts.filter(p => 
-                p.title.toLowerCase().includes(query) || 
-                p.category.toLowerCase().includes(query) || 
-                p.text.toLowerCase().includes(query)
-            );
-            renderPrompts(filtered);
+        function filterWallpapers() {
+            applyFilters();
         }
 
-        // Modal Controls
-        function openModal() {
-            document.getElementById('promptModal').classList.remove('hidden');
-            document.getElementById('promptModal').classList.add('flex');
+        function applyFilters() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            
+            let result = wallpapers;
+
+            // Category filter
+            if (currentCategory !== 'all') {
+                result = result.filter(w => w.category === currentCategory);
+            }
+
+            // Search query filter
+            if (searchQuery.trim() !== '') {
+                result = result.filter(w => 
+                    w.title.toLowerCase().includes(searchQuery) || 
+                    w.category.toLowerCase().includes(searchQuery)
+                );
+            }
+
+            renderWallpapers(result);
         }
 
-        function closeModal() {
-            document.getElementById('promptModal').classList.remove('flex');
-            document.getElementById('promptModal').classList.add('hidden');
-            document.getElementById('addForm').reset();
+        function rateWallpaper(element) {
+            element.innerHTML = "★ 5.0 (Rated!)";
+            element.style.color = "#2ecc71";
         }
 
-        // Add New Prompt Handler
-        function addPrompt(e) {
-            e.preventDefault();
-            const title = document.getElementById('newTitle').value;
-            const category = document.getElementById('newCategory').value;
-            const text = document.getElementById('newText').value;
-
-            const newObj = {
-                id: prompts.length + 1,
-                title,
-                category,
-                text
-            };
-
-            prompts.unshift(newObj);
-            renderPrompts(prompts);
-            closeModal();
-        }
-
-        // Initial Call
-        renderPrompts(prompts);
+        // Initial render
+        renderWallpapers(wallpapers);
     </script>
 </body>
-</html>                                
+            </html>                            
