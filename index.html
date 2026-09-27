@@ -1,311 +1,319 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huzaifstech - Aesthetic Wallpapers</title>
+    <title>Best Deals Hub | Top AliExpress Picks</title>
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #000000;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
         }
 
         header {
-            padding: 25px 20px;
+            background: linear-gradient(135deg, #ff4747, #e62e04);
+            color: white;
+            padding: 25px 10px;
             text-align: center;
-            border-bottom: 1px solid #222;
-            background: #0a0a0a;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         header h1 {
-            font-size: 26px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: #e0e0e0;
+            font-size: 2rem;
             margin-bottom: 5px;
         }
 
         header p {
-            color: #888;
-            font-size: 14px;
-        }
-
-        .search-container {
-            max-width: 600px;
-            margin: 25px auto 10px auto;
-            padding: 0 20px;
-            display: flex;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 12px 20px;
-            background: #121212;
-            border: 1px solid #333;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .search-bar:focus {
-            border-color: #666;
-        }
-
-        .categories {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 15px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .cat-btn {
-            background: #141414;
-            color: #bbb;
-            border: 1px solid #262626;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            transition: all 0.2s ease;
-        }
-
-        .cat-btn:hover, .cat-btn.active {
-            background: #fff;
-            color: #000;
-            border-color: #fff;
+            font-size: 1rem;
+            opacity: 0.9;
         }
 
         .container {
-            max-width: 1300px;
-            margin: 20px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
-            flex: 1;
-            width: 100%;
+            max-width: 1200px;
+            margin: 25px auto;
+            padding: 0 15px;
         }
 
-        .card {
-            background: #111;
+        /* 12 Cards Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
             border-radius: 10px;
             overflow: hidden;
-            border: 1px solid #1f1f1f;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s;
+            justify-content: space-between;
         }
 
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: #333;
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
         }
 
-        .card-img-wrapper {
+        .image-container {
             width: 100%;
-            height: 160px;
+            height: 200px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            background: #181818;
-            position: relative;
         }
 
-        .card-img-wrapper img {
+        .image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
         }
 
-        .card:hover .card-img-wrapper img {
-            transform: scale(1.05);
-        }
-
-        .card-content {
+        .product-details {
             padding: 15px;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            flex: 1;
             justify-content: space-between;
         }
 
-        .card-title {
-            font-size: 14px;
-            font-weight: 500;
-            color: #ddd;
-        }
-
-        .card-footer-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .rating {
-            color: #f39c12;
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-        .download-btn {
-            background: #ffffff;
-            color: #000000;
-            text-decoration: none;
-            padding: 6px 14px;
-            font-size: 12px;
+        .product-title {
+            font-size: 1rem;
             font-weight: 600;
-            border-radius: 5px;
-            transition: background 0.2s;
-            display: inline-block;
+            margin-bottom: 8px;
+            color: #222;
         }
 
-        .download-btn:hover {
-            background: #dcdcdc;
+        .product-price {
+            font-size: 1.15rem;
+            color: #e62e04;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .btn-buy {
+            display: block;
+            background-color: #ff4747;
+            color: white;
+            text-align: center;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-buy:hover {
+            background-color: #d62626;
         }
 
         footer {
             text-align: center;
-            padding: 25px;
-            border-top: 1px solid #222;
-            color: #666;
-            font-size: 13px;
-            background: #0a0a0a;
+            padding: 20px;
             margin-top: 40px;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-            }
+            background-color: #222;
+            color: #aaa;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Huzaifstech Wallpapers</h1>
-        <p>Exclusive AI-Generated Aesthetic Wallpapers</p>
+        <h1>Hot Deals & Best Finds</h1>
+        <p>Handpicked products with exclusive discounts from AliExpress</p>
     </header>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-bar" placeholder="Search wallpapers by title or category..." onkeyup="filterWallpapers()">
-    </div>
+    <div class="container">
+        <div class="product-grid">
 
-    <div class="categories">
-        <button class="cat-btn active" onclick="filterCategory('all', this)">All</button>
-        <button class="cat-btn" onclick="filterCategory('Cyberpunk', this)">Cyberpunk</button>
-        <button class="cat-btn" onclick="filterCategory('Moody Night', this)">Moody Night</button>
-        <button class="cat-btn" onclick="filterCategory('Anime & Lo-Fi', this)">Anime & Lo-Fi</button>
-    </div>
+            <!-- PRODUCT 1 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://pin.it/nouBADI8g">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 1</h2>
+                        <div class="product-price">$12.99</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_1" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
 
-    <div class="container" id="wallpaperGrid">
-        <!-- Unique wallpapers populated dynamically -->
+            <!-- PRODUCT 2 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/300x200?text=Product+2" alt="Product Image 2">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 2</h2>
+                        <div class="product-price">$15.50</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_2" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 3 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/300x200?text=Product+3" alt="Product Image 3">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 3</h2>
+                        <div class="product-price">$8.99</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_3" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 4 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/300x200?text=Product+4" alt="Product Image 4">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 4</h2>
+                        <div class="product-price">$19.99</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_4" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 5 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/300x200?text=Product+5" alt="Product Image 5">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 5</h2>
+                        <div class="product-price">$5.40</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_5" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 6 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/300x200?text=Product+6" alt="Product Image 6">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 6</h2>
+                        <div class="product-price">$22.00</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_6" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 7 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/300x200?text=Product+7" alt="Product Image 7">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 7</h2>
+                        <div class="product-price">$11.20</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_7" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 8 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/300x200?text=Product+8" alt="Product Image 8">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 8</h2>
+                        <div class="product-price">$14.99</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_8" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 9 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/300x200?text=Product+9" alt="Product Image 9">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 9</h2>
+                        <div class="product-price">$9.50</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_9" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 10 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/300x200?text=Product+10" alt="Product Image 10">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 10</h2>
+                        <div class="product-price">$18.00</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_10" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 11 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/300x200?text=Product+11" alt="Product Image 11">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 11</h2>
+                        <div class="product-price">$27.50</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_11" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- PRODUCT 12 -->
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/300x200?text=Product+12" alt="Product Image 12">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h2 class="product-title">Product Title Here 12</h2>
+                        <div class="product-price">$6.80</div>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_LINK_12" target="_blank" class="btn-buy">Buy on AliExpress</a>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <footer>
-        © 2026 Huzaifstech. All Rights Reserved.
+        <p>&copy; 2026 Deals Store. As an AliExpress Associate, I earn from qualifying purchases.</p>
     </footer>
 
-    <script>
-        // Unique AI-generated & Pinterest-style curated wallpaper database
-        const wallpapers = [
-            { id: 1, title: "Neon Ronin Alley", category: "Cyberpunk", img: "https://images.googleusercontent.com/img_proxy/AWHZkoH3P4WvR9N7K5m2x7_eQ9_2_L1S3T6U8V4W5X2Y1Z0=s800", rating: "★ 4.9" },
-            { id: 2, title: "Cyber-Cat Hacker", category: "Cyberpunk", img: "https://images.googleusercontent.com/img_proxy/AWHZkoG1V2S3T4U5V6W7X8Y9Z0A1B2C3D4E5F6G7H8=s800", rating: "★ 4.8" },
-            { id: 3, title: "Retro-Future Highway", category: "Cyberpunk", img: "https://images.googleusercontent.com/img_proxy/AWHZkoF9E8D7C6B5A4Z3Y2X1W0V9U8T7S6R5Q4P3=s800", rating: "★ 4.9" },
-            { id: 4, title: "Astronaut's Alien Cliff", category: "Moody Night", img: "https://images.googleusercontent.com/img_proxy/AWHZkoI1J2K3L4M5N6O7P8Q9R0S1T2U3V4W5X6Y7=s800", rating: "★ 5.0" },
-            { id: 5, title: "Moody Mountain Stargazing", category: "Moody Night", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
-            { id: 6, title: "Neon Rainy Cityscape", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop", rating: "★ 4.7" },
-            { id: 7, title: "Lonely Moonlit Night", category: "Moody Night", img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
-            { id: 8, title: "Anime Rain Window Chill", category: "Anime & Lo-Fi", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop", rating: "★ 4.8" },
-            { id: 9, title: "Lo-Fi Sunset Coding Room", category: "Anime & Lo-Fi", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop", rating: "★ 4.9" },
-            { id: 10, title: "Cybernetic Glow Corridor", category: "Cyberpunk", img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop", rating: "★ 4.6" },
-            { id: 11, title: "Deep Space Nebula Sky", category: "Moody Night", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop", rating: "★ 5.0" },
-            { id: 12, title: "Lo-Fi Neon Bedroom Lamp", category: "Anime & Lo-Fi", img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop", rating: "★ 4.7" }
-        ];
-
-        let currentCategory = 'all';
-
-        function renderWallpapers(filteredList) {
-            const grid = document.getElementById('wallpaperGrid');
-            grid.innerHTML = '';
-
-            if (filteredList.length === 0) {
-                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #777; padding: 40px;">No wallpapers found!</p>`;
-                return;
-            }
-
-            filteredList.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="card-img-wrapper">
-                        <img src="${item.img}" alt="${item.title}" loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">${item.title}</div>
-                            <span style="font-size: 11px; color: #666;">${item.category}</span>
-                        </div>
-                        <div class="card-footer-info">
-                            <span class="rating" onclick="rateWallpaper(this)">${item.rating}</span>
-                            <a href="${item.img}" target="_blank" download class="download-btn">Download</a>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function filterCategory(category, btn) {
-            currentCategory = category;
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            applyFilters();
-        }
-
-        function filterWallpapers() {
-            applyFilters();
-        }
-
-        function applyFilters() {
-            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
-            let result = wallpapers;
-
-            if (currentCategory !== 'all') {
-                result = result.filter(w => w.category === currentCategory);
-            }
-
-            if (searchQuery.trim() !== '') {
-                result = result.filter(w => 
-                    w.title.toLowerCase().includes(searchQuery) || 
-                    w.category.toLowerCase().includes(searchQuery)
-                );
-            }
-
-            renderWallpapers(result);
-        }
-
-        function rateWallpaper(element) {
-            element.innerHTML = "★ 5.0 (Rated!)";
-            element.style.color = "#2ecc71";
-        }
-
-        renderWallpapers(wallpapers);
-    </script>
 </body>
-            </html>
+                </html>
