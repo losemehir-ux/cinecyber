@@ -3,146 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AliExpress Affiliate Hub</title>
-    <!-- Tailwind CSS for modern, responsive styling -->
-    <script src="https://tailwindcss.com"></script>
-    <!-- Lucide Icons for clean UI dashboard elements -->
-    <script src="https://unpkg.com"></script>
+    <title>Curated Smart Finds | Best Deals Online</title>
+    <style>
+        :root {
+            --primary-color: #ff4757;
+            --bg-color: #f1f2f6;
+            --card-bg: #ffffff;
+            --text-color: #2f3542;
+            --text-muted: #747d8c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Header / Branding */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            font-weight: 800;
+        }
+
+        header h1 span {
+            color: var(--primary-color);
+        }
+
+        header p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Product Grid Grid Layout */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        /* Product Card Styling */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .image-container {
+            position: relative;
+            padding-top: 100px%; /* Forces 1:1 Aspect Ratio */
+            overflow: hidden;
+            background-color: #f7f7f7;
+        }
+
+        .card-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.8em; 
+        }
+
+        .price-container {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .current-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .old-price {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .cta-btn {
+            display: block;
+            text-align: center;
+            background: var(--text-color);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s ease;
+            margin-top: auto;
+        }
+
+        .cta-btn:hover {
+            background: var(--primary-color);
+        }
+
+        /* Responsive Fixes */
+        @media (max-width: 600px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            .card-title {
+                font-size: 0.9rem;
+            }
+            .current-price {
+                font-size: 1.1rem;
+            }
+            .container {
+                padding: 0 10px;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-50 font-sans antialiased text-gray-900">
+<body>
 
-    <!-- Top Navigation Bar -->
-    <nav class="bg-white border-b border-gray-200 fixed w-full z-30 top-0 left-0">
-        <div class="px-6 py-3 flex items-center justify-between">
-            <div class="flex items-center justify-start space-x-3">
-                <div class="bg-orange-500 p-2 rounded-lg text-white">
-                    <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+    <header>
+        <h1>SmartFinds<span>.Deals</span></h1>
+        <p>Handpicked Top-Rated Viral Trends & Gadgets from AliExpress</p>
+    </header>
+
+    <div class="container">
+        <div class="product-grid">
+
+            <!-- Product Card 1 -->
+            <div class="card">
+                <div style="position: relative; width: 100%; padding-top: 100%;">
+                    <span class="badge">Viral Trend</span>
+                    <!-- Replace with your AliExpress Product Image Link -->
+                    <img src="https://unsplash.com" alt="Product Image" class="card-img">
                 </div>
-                <span class="text-xl font-bold tracking-tight text-gray-800">AliExpress<span class="text-orange-500 font-medium text-lg ml-1">Affiliate Pro</span></span>
-            </div>
-            <div class="flex items-center space-x-4">
-                <button onclick="openModal()" class="flex items-center space-x-2 bg-orange-500 hover:bg-orange-600 text-white font-medium px-4 py-2 rounded-lg shadow-sm transition duration-150 ease-in-out">
-                    <i data-lucide="plus" class="w-4 h-4"></i>
-                    <span>Add New Pin / Link</span>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Dashboard Container -->
-    <main class="pt-20 px-6 max-w-7xl mx-auto">
-        
-        <!-- Header Banner Section -->
-        <div class="my-6 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl p-6 md:p-8 text-white shadow-md relative overflow-hidden">
-            <div class="relative z-10 max-w-xl">
-                <h1 class="text-2xl md:text-3xl font-extrabold mb-2">Welcome Back, Partner</h1>
-                <p class="text-orange-100 text-sm md:text-base">Manage your product showcase, track high-converting referral pins, and capture traffic effortlessly inside your personal repository.</p>
-            </div>
-            <div class="absolute right-0 top-0 bottom-0 opacity-10 flex items-center justify-center pointer-events-none pr-8">
-                <i data-lucide="trending-up" class="w-64 h-64"></i>
-            </div>
-        </div>
-
-        <!-- Analytical Metric Overview Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Total Links Saved</p>
-                    <h3 id="stat-total-links" class="text-2xl font-bold text-gray-800 mt-1">0</h3>
-                </div>
-                <div class="bg-orange-100 p-3 rounded-lg text-orange-600"><i data-lucide="link-2"></i></div>
-            </div>
-            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Active Campaigns</p>
-                    <h3 id="stat-categories" class="text-2xl font-bold text-gray-800 mt-1">0</h3>
-                </div>
-                <div class="bg-blue-100 p-3 rounded-lg text-blue-600"><i data-lucide="folder"></i></div>
-            </div>
-            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Total Clicks Simulated</p>
-                    <h3 id="stat-clicks" class="text-2xl font-bold text-gray-800 mt-1">1,248</h3>
-                </div>
-                <div class="bg-green-100 p-3 rounded-lg text-green-600"><i data-lucide="mouse-pointer-click"></i></div>
-            </div>
-            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Est. Conversion Rate</p>
-                    <h3 class="text-2xl font-bold text-gray-800 mt-1">3.42%</h3>
-                </div>
-                <div class="bg-purple-100 p-3 rounded-lg text-purple-600"><i data-lucide="pie-chart"></i></div>
-            </div>
-        </div>
-
-        <!-- Filter & Search Dynamic Controls -->
-        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm mb-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="relative w-full md:w-72">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
-                    <i data-lucide="search" class="w-5 h-5"></i>
-                </span>
-                <input type="text" id="search-input" oninput="filterItems()" placeholder="Search items or pins..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-            </div>
-            <div class="flex items-center space-x-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
-                <span class="text-xs font-medium text-gray-500 uppercase tracking-wider mr-2 hidden md:inline">Category:</span>
-                <select id="category-filter" onchange="filterItems()" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 p-2">
-                    <option value="All">All Categories</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Fashion">Fashion</option>
-                    <option value="Home & Kitchen">Home & Kitchen</option>
-                    <option value="Gadgets">Gadgets</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Dynamic Product Showcase Grid Container -->
-        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-            <!-- Items injected by JavaScript go here -->
-        </div>
-
-        <!-- Blank State Graphic Component -->
-        <div id="empty-state" class="hidden text-center py-16 bg-white border border-dashed border-gray-300 rounded-xl mb-12">
-            <div class="inline-flex p-4 bg-orange-50 text-orange-500 rounded-full mb-4">
-                <i data-lucide="package-open" class="w-10 h-10"></i>
-            </div>
-            <h3 class="text-lg font-semibold text-gray-800">No pins or links available</h3>
-            <p class="text-sm text-gray-500 max-w-sm mx-auto mt-1">Start building your personalized high-converting affiliate storefront by adding your first product pin link.</p>
-            <button onclick="openModal()" class="mt-4 inline-flex items-center space-x-2 bg-orange-500 hover:bg-orange-600 text-white font-medium px-4 py-2 rounded-lg text-sm shadow transition">
-                <i data-lucide="plus" class="w-4 h-4"></i>
-                <span>Add Your First Link</span>
-            </button>
-        </div>
-
-    </main>
-
-    <!-- Modal Form Component for Adding Links -->
-    <div id="modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" onclick="closeModal()"></div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            
-            <div class="inline-block align-bottom bg-white rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-gray-100">
-                <div class="bg-white px-6 pt-6 pb-4">
-                    <div class="flex items-center justify-between pb-3 border-b border-gray-100">
-                        <h3 class="text-lg font-bold text-gray-900 flex items-center space-x-2">
-                            <i data-lucide="pin" class="text-orange-500 w-5 h-5"></i>
-                            <span>Add New Affiliate Entry</span>
-                        </h3>
-                        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-500 transition">
-                            <i data-lucide="x" class="w-5 h-5"></i>
-                        </button>
+                <div class="card-content">
+                    <h3 class="card-title">Minimalist Water Resistant Smart Watch for iOS & Android</h3>
+                    <div class="price-container">
+                        <span class="current-price">$19.99</span>
+                        <span class="old-price">$49.99</span>
                     </div>
-                    
-                    <form id="affiliate-form" class="mt-4 space-y-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Product Title *</label>
-                            <input type="text" id="prod-title" required placeholder="e.g., Anker Wireless Magnetic Charger Powerbank" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Price ($ USD)</label>
-                                <input type="number" step="0.01" id="prod-price" placeholder="19.99" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
-                            </div>
-                            <div>
-                                                                     
+                    <!-- Replace with your AliExpress Affiliate Link -->
+                    <a href="YOUR_ALIEXPRESS_AFFILIATE_LINK_HERE" target="_blank" rel="nofollow noopener" class="cta-btn">Check Price on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="card">
+                <div style="position: relative; width: 100%; padding-top: 100%;">
+                    <span class="badge">50% OFF</span>
+                    <img src="https://unsplash.com" alt="Product Image" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Premium Wireless Noise-Cancelling Bluetooth Headphones</h3>
+                    <div class="price-container">
+                        <span class="current-price">$24.50</span>
+                        <span class="old-price">$49.00</span>
+                    </div>
+                    <a href="YOUR_ALIEXPRESS_AFFILIATE_LINK_HERE" target="_blank" rel="nofollow noopener" class="cta-btn">Check Price on AliExpress</a>
+                </div>
+            </div>
+
+            <!-- Add more product cards by copying the structure above -->
+
+        </div>
+    </div>
+
+</body>
+                        </html>
+                        
